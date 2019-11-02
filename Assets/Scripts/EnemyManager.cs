@@ -21,7 +21,8 @@ public class EnemyManager : MonoBehaviour
 
     public void AddRoom(Room room)
     {
-        rooms.Add(room);
+        if(room != null)
+            rooms.Add(room);
     }
 
     public void UpdateEnemyList()

@@ -15,7 +15,7 @@ public abstract class Vehicle : MonoBehaviour
     protected float health;
     protected float damage;
 
-    protected float ACCELERATION_SCALE;
+    protected float ACCELERATION_SCALE = 1;
     protected float MAX_SPEED;
     protected float FRICTION_COEF;
 

@@ -8,6 +8,8 @@ public class SceneManager : MonoBehaviour
 {
     GameStates gameState = GameStates.Game;
     public Player player;
+
+    public Map sceneMap;
     public EnemyManager enemyManager;
     public Room room;
 
@@ -27,6 +29,7 @@ public class SceneManager : MonoBehaviour
         {
             case GameStates.Game:
                 player.Move();
+                // sceneMap.LoadCurrentRoom();
                 enemyManager.UpdateEnemyList();
                 enemyManager.MoveEnemy(player);
                 break;
