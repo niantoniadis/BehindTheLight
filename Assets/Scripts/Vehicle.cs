@@ -11,6 +11,9 @@ public abstract class Vehicle : MonoBehaviour
     protected Vector3 acceleration;
     protected float rotation;
     protected int mass;
+    protected float maxHealth;
+    protected float health;
+    protected float damage;
 
     protected float ACCELERATION_SCALE;
     protected float MAX_SPEED;
