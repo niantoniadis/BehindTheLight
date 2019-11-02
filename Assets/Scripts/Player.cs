@@ -8,11 +8,14 @@ public class Player : Vehicle
 {
     public GameObject sword;
     public CircleCollider2D attack;
+    float attackingTimer = 0;
+    float attackTime;
     PlayerStates currentState;
     Vector2 coords;
     float maxStamina;
     float staminaResetBuffer;
     float stamina;
+    public bool attacking = false;
 
     // Start is called before the first frame update
     void Start()
@@ -141,11 +144,22 @@ public class Player : Vehicle
         RotateSword();
     }
 
-    public void Attack()
+    public void AnimateAttack()
     {
-        if(Input.GetMouseButton(0))
+        if(attacking)
         {
+            attackingTimer += Time.deltaTime;
+            // -30 degress from direction
 
+            float swordRotation = sword.transform.rotation.z + Mathf.Rad2Deg * 60 * attackTime / attackingTimer;
+            sword.transform.rotation = Quaternion.Euler(0, 0, swordRotation);
+            if(attackingTimer >= attackTime)
+            {
+                swordRotation = Mathf.Atan2(coords.x, coords.y) * Mathf.Rad2Deg + 80;
+                sword.transform.rotation = Quaternion.Euler(0, 0, swordRotation);
+                attackingTimer = 0;
+                attacking = false;
+            }
         }
     }
 

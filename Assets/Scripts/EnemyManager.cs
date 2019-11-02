@@ -73,16 +73,22 @@ public class EnemyManager : MonoBehaviour
         {
             Debug.Log("Enemy:" + enemy.Position);
             Debug.Log("Player:" + player.Position);
-            if(Input.GetMouseButton(0))
+            if(enemy.IsCollidingWith(player))
             {
-                
+                Debug.Log("69 lol");
+                HandleCollisions(player, enemy.Damage);
             }
-            else
-                if(enemy.IsCollidingWith(player))
-                {
-                    Debug.Log("69 lol");
-                    HandleCollisions(player, enemy.Damage);
-                }
+        }
+    }
+
+    public void SwordCollisions(Player player, Room room)
+    {
+        foreach(Enemy enemy in allEnemies[room])
+        {
+            if(enemy.IsCollidingWith(player.GetComponentInChildren<CircleCollider2D>()))
+            {
+                enemy.TakeDamage(player.Damage);
+            }
         }
     }
 

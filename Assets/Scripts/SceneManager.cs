@@ -34,7 +34,15 @@ public class SceneManager : MonoBehaviour
                 {
                     case PlayerStates.Default:
                         player.Move();
-                        player.Attack();
+                        if(Input.GetMouseButtonDown(0))
+                        {
+                            player.attacking = true;   
+                        }
+                        if(player.attacking)
+                        {
+                            enemyManager.SwordCollisions(player, rooms[0]);
+                        }
+                        player.AnimateAttack();
                         player.RotateVehicle();
                         break;
                 }
