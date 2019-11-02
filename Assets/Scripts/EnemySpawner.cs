@@ -30,4 +30,9 @@ public class EnemySpawner : MonoBehaviour
             enemies.Add(Instantiate(enemy.gameObject, transform.position, Quaternion.identity).GetComponent<Enemy>());
         }
     }
+
+    public List<Enemy> getEnemies()
+    {
+        return enemies;
+    }
 }
