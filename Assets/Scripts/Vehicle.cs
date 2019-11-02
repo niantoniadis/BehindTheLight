@@ -68,7 +68,7 @@ public abstract class Vehicle : MonoBehaviour
         }
     }
 
-    public void Movement()
+    public virtual void Movement()
     {
         velocity += acceleration * Time.deltaTime * ACCELERATION_SCALE;
         if(acceleration.magnitude == 0)

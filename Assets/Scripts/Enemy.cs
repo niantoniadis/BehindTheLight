@@ -34,7 +34,7 @@ public class Enemy : Vehicle
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void Move(Player player)
@@ -54,7 +54,7 @@ public class Enemy : Vehicle
                 // ACCELERATION_SCALE = 0.5f;
             Seek(player);
         }
-        if(behavior == EnemyType.BIGGESTBRAINIST)
+        else
         {
             SeekAhead(player);
         }
