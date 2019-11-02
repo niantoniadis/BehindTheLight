@@ -50,7 +50,19 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    private Enemy GetCollidingEnemy(Player player)
+    public void RemoveEnemies()
+    {
+        for(int i = 0; i < allEnemies.Count; i++)
+        {
+            if(allEnemies[i].IsDead())
+            {
+                Destroy(allEnemies[i]);
+            }
+        }
+    }
+
+    public Enemy GetCollidingEnemy(Player player)
+
     {
         foreach (Enemy enemy in allEnemies)
         {

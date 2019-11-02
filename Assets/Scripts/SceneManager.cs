@@ -32,7 +32,9 @@ public class SceneManager : MonoBehaviour
                 // sceneMap.LoadCurrentRoom();
                 enemyManager.UpdateEnemyList();
                 enemyManager.MoveEnemy(player);
+                enemyManager.RemoveEnemies();
                 break;
         }
+        gameState = player.IsDead() ? GameStates.GameOver : GameStates.Game;
     }
 }

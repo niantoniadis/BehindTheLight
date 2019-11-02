@@ -27,22 +27,38 @@ public class Enemy : Vehicle
         acceleration = Vector3.zero;
         position = transform.position;
         ACCELERATION_SCALE = 1.5f;
+        health = 10;
+        maxHealth = 12;
     }
 
     // Update is called once per frame
     void Update()
     {
-       // Movement();
+        
     }
 
     public void Move(Player player)
     {
-        //if(behavior == EnemyType.BABY)
-        //{
+        if(behavior == EnemyType.BABY)
+        {
             //if not light
-        Seek(player);
+            Seek(player);
+        }
+        if(behavior == EnemyType.LURKER)
+        {
+            //if dark 
+            //{
+                // ACCELERATION_SCALE = 3.0f;
+            //}
+            //else
+                // ACCELERATION_SCALE = 0.5f;
+            Seek(player);
+        }
+        if(behavior == EnemyType.BIGGESTBRAINIST)
+        {
+            SeekAhead(player);
+        }
         Movement();
-        //}
     }
 
 
