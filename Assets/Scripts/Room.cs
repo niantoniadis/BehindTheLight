@@ -62,6 +62,7 @@ public class Room : MonoBehaviour
             bottomRoom = neighbor;
         }
     }
+    
     public void SpawnSpawners()
     {
         float right = background.GetComponent<SpriteRenderer>().bounds.max.x;

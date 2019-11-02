@@ -45,6 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xCoord: 0
   yCoord: 0
-  spawner: {fileID: 0}
+  spawner: {fileID: 2908007251596414090, guid: 2febf8a39c0eb7543a0e6779b550491d, type: 3}
   spawners: []
-  background: {fileID: 0}
+  background: {fileID: 6034523301953240163, guid: 26bf7ad894b3f524d8659179c933a54d,
+    type: 3}
