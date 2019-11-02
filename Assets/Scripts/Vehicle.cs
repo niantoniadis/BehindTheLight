@@ -2,21 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Vehicle : MonoBehaviour
+public abstract class Vehicle : MonoBehaviour
 {
-    Vector3 position;
-    Vector3 velocity;
-    Vector3 desiredVelocity;
-    Vector3 acceleration;
-    float maxSpeed;
-    float rotation;
-    int mass;
-    bool seeking;
+    protected Vector3 direction;
+    protected Vector3 position;
+    protected Vector3 velocity;
+    protected Vector3 desiredVelocity;
+    protected Vector3 acceleration;
+    protected float maxSpeed;
+    protected float rotation;
+    protected int mass;
 
     // Start is called before the first frame update
     void Start()
     {
-        seeking = true;
         mass = 10;
 
         maxSpeed = 5f;
@@ -29,46 +28,27 @@ public class Vehicle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (position.x < -8.887f + GetComponent<SpriteRenderer>().bounds.size.x/2)
-        {
-            acceleration.x = -acceleration.x;
-            velocity.x = -velocity.x;
-        }
-        if (position.x > 8.887f - GetComponent<SpriteRenderer>().bounds.size.x / 2)
-        {
-            acceleration.x = -acceleration.x;
-            velocity.x = -velocity.x;
-        }
-        if (position.y < -5f + GetComponent<SpriteRenderer>().bounds.size.y / 2)
-        {
-            acceleration.y = -acceleration.y;
-            velocity.y = -velocity.y;
-        }
-        if (position.y > 5f - GetComponent<SpriteRenderer>().bounds.size.y / 2)
-        {
-            acceleration.y = -acceleration.y;
-            velocity.y = -velocity.y;
-        }
+        
+    }
 
-        velocity += acceleration * Time.deltaTime;
+    public void Movement()
+    {
         position += velocity * Time.deltaTime;
 
-        transform.rotation = Quaternion.Euler(0, 0, rotation - 90f);
+        transform.rotation = Quaternion.Euler(0, 0, rotation);
         transform.position = position;
 
         acceleration = Vector3.zero;
     }
 
-    public bool Seeking
+    public void ApplyForce(Vector3 force)
     {
-        get
-        {
-            return seeking;
-        }
-        set
-        {
-            seeking = value;
-        }
+        acceleration += force / mass;
+    }
+
+    public void SetVelocity(Vector3 vel)
+    {
+        velocity = vel;
     }
 
     public void Flee(Vehicle target)
@@ -83,37 +63,5 @@ public class Vehicle : MonoBehaviour
         desiredVelocity = target.position - position;
         desiredVelocity = Vector3.ClampMagnitude(desiredVelocity, maxSpeed);
         acceleration += ((desiredVelocity - velocity) / mass);
-    }
-
-    public bool IsColliding(SpriteRenderer colliding)
-    {
-        if (colliding.bounds.size.x/2 + GetComponent<SpriteRenderer>().bounds.size.x/2 > Vector3.Distance(colliding.bounds.center, GetComponent<SpriteRenderer>().bounds.center))
-        {
-            return true;
-        }
-        return false;
-    }
-
-    public void Teleport()
-    {
-        position = new Vector3(Random.Range(-8.5f, 8.5f), Random.Range(-4.5f, 4.5f), 0);
-        transform.position = position;
-    }
-
-    public void SetRotation(Vehicle target)
-    {
-        Vector3 direction;
-        if (seeking)
-        {
-            direction = target.position - position;
-            direction.Normalize();
-            rotation = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
-        }
-        else
-        {
-            direction = position - target.position;
-            direction.Normalize();
-            rotation = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
-        }
     }
 }
