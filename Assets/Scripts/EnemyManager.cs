@@ -73,11 +73,16 @@ public class EnemyManager : MonoBehaviour
         {
             Debug.Log("Enemy:" + enemy.Position);
             Debug.Log("Player:" + player.Position);
-            if(enemy.IsCollidingWith(player))
+            if(Input.GetMouseButton(0))
             {
-                Debug.Log("69 lol");
-                HandleCollisions(player, enemy.Damage);
+                
             }
+            else
+                if(enemy.IsCollidingWith(player))
+                {
+                    Debug.Log("69 lol");
+                    HandleCollisions(player, enemy.Damage);
+                }
         }
     }
 

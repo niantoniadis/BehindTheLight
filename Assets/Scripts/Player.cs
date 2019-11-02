@@ -141,6 +141,14 @@ public class Player : Vehicle
         RotateSword();
     }
 
+    public void Attack()
+    {
+        if(Input.GetMouseButton(0))
+        {
+
+        }
+    }
+
     public void StaminaUpdate()
     {
         if(staminaResetBuffer > 0)

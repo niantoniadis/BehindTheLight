@@ -34,6 +34,7 @@ public class SceneManager : MonoBehaviour
                 {
                     case PlayerStates.Default:
                         player.Move();
+                        player.Attack();
                         player.RotateVehicle();
                         break;
                 }
