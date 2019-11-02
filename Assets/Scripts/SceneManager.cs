@@ -39,6 +39,11 @@ public class SceneManager : MonoBehaviour
                         break;
                 }
 
+                if (enemy.IsCollidingWith(player.GetComponents<CircleCollider2D>()))
+                {
+                    Debug.Log("touching");
+                }
+
                 // sceneMap.LoadCurrentRoom();
                 enemyManager.UpdateEnemyList(rooms);
                 enemyManager.MoveEnemy(player, rooms);

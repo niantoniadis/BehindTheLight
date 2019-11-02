@@ -131,7 +131,7 @@ public abstract class Vehicle : MonoBehaviour
         {
             foreach (CircleCollider2D checkCollider in check)
             {
-                if (collider.radius + checkCollider.radius > Mathf.Abs(Vector3.Distance(collider.bounds.center, checkCollider.bounds.center)))
+                if (collider.radius / 3 + checkCollider.radius / 3 > Mathf.Abs(Vector3.Distance(collider.bounds.center, checkCollider.bounds.center)))
                 {
                     return true;
                 }
