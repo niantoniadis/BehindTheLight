@@ -17,7 +17,9 @@ public class SceneManager : MonoBehaviour
     void Start()
     {
         gameState = GameStates.Game;
+        player = Instantiate(player.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Player>();
         room = Instantiate(room.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Room>();
+        enemyManager.AddRoom(room);
     }
 
     // Update is called once per frame
@@ -28,6 +30,7 @@ public class SceneManager : MonoBehaviour
             case GameStates.Game:
                 player.Move();
                 // sceneMap.LoadCurrentRoom();
+                enemyManager.UpdateEnemyList();
                 enemyManager.MoveEnemy(player);
                 break;
         }

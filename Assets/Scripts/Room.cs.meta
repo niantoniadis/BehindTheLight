@@ -7,7 +7,11 @@ guid: 375906693d1846f4a802bb82b36145ec
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - spawner: {fileID: 2908007251596414090, guid: 2febf8a39c0eb7543a0e6779b550491d,
+      type: 3}
+  - background: {fileID: 6034523301953240163, guid: 26bf7ad894b3f524d8659179c933a54d,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

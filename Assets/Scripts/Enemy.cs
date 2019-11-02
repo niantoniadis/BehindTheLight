@@ -32,11 +32,12 @@ public class Enemy : Vehicle
 
     public void Move(Player player)
     {
-        if(behavior == EnemyType.BABY)
-        {
+        //if(behavior == EnemyType.BABY)
+        //{
             //if not light
-            Seek(player);
-        }
+        Debug.Log("fuck3");
+        Seek(player);
+        //}
     }
 
 
