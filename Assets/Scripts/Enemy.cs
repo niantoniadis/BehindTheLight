@@ -30,5 +30,14 @@ public class Enemy : Vehicle
         //Movement();
     }
 
+    public void Move(Player player)
+    {
+        if(behavior == EnemyType.BABY)
+        {
+            //if not light
+            Seek(player);
+        }
+    }
+
 
 }

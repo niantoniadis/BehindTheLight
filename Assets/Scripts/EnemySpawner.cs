@@ -31,7 +31,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    public List<Enemy> getEnemies()
+    public List<Enemy> GetEnemies()
     {
         return enemies;
     }
