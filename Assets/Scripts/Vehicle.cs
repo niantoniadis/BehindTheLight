@@ -76,4 +76,13 @@ public abstract class Vehicle : MonoBehaviour
         Vector3 friction = -1 * velocity.normalized;
         acceleration += friction * coef / mass;
     }
+
+    public bool isCollidingWith(Vehicle check)
+    {
+        if (check.GetComponent<CircleCollider2D>().IsTouching(GetComponent<CircleCollider2D>()))
+        {
+            return true;
+        }
+        return false;
+    }
 }
