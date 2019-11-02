@@ -48,7 +48,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 953f37fe7444c6249a8c7bd3084fde5c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -66,9 +66,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 436053123
-  m_SortingLayer: -4
+  m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dc2f3ec2a7e9d8940a1cb0bfc087833f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2476a949f3cca5a45b38afc845954a74, type: 3}
   m_Color: {r: 0.9056604, g: 0.508366, b: 0.508366, a: 1}
   m_FlipX: 0
   m_FlipY: 0
