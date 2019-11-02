@@ -57,9 +57,7 @@ public class Enemy : Vehicle
         else
         {
             SeekAhead(player);
-        }
+        };
         Movement();
     }
-
-
 }

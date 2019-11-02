@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    public List<Room> rooms;
+    public List<Room> rooms = new List<Room>();
     public List<Enemy> allEnemies;
     // Start is called before the first frame update
     void Start()
-    {
-        rooms = new List<Room>();
+    { 
         allEnemies = new List<Enemy>();
     }
     
