@@ -35,7 +35,7 @@ public class EnemyManager : MonoBehaviour
                 List<Enemy> enemies = spawn.GetEnemies();
                 foreach(Enemy en in enemies)
                 {
-                    if(!allEnemies.Contains(en))
+                    if(!allEnemies.Contains(en) && en != null)
                         allEnemies.Add(en);
                 } 
             }    
@@ -50,17 +50,25 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public Enemy GetCollidingEnemy(Player player)
+    private Enemy GetCollidingEnemy(Player player)
     {
         foreach (Enemy enemy in allEnemies)
         {
             if ((enemy).isCollidingWith(player))
             {
-
+                return enemy;
             }
         }
         return null;
     }
 
+    public void HandleCollisions(Player player)
+    {
+        Enemy colliding = GetCollidingEnemy(player);
 
+        if (colliding != null)
+        {
+            player.TakeDamage(colliding.Damage);
+        }
+    }
 }

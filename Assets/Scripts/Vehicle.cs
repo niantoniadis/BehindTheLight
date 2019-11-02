@@ -35,6 +35,14 @@ public abstract class Vehicle : MonoBehaviour
         
     }
 
+    public float Damage
+    {
+        get
+        {
+            return damage;
+        }
+    }
+
     public void Movement()
     {
         velocity += acceleration * Time.deltaTime * ACCELERATION_SCALE;
@@ -79,9 +87,15 @@ public abstract class Vehicle : MonoBehaviour
 
     public bool isCollidingWith(Vehicle check)
     {
-        if (check.GetComponent<CircleCollider2D>().IsTouching(GetComponent<CircleCollider2D>()))
+        foreach(CircleCollider2D collider in GetComponents<CircleCollider2D>())
         {
-            return true;
+            foreach (CircleCollider2D checkCollider in check.GetComponents<CircleCollider2D>())
+            {
+                if (collider.IsTouching(GetComponent<CircleCollider2D>()))
+                {
+                    return true;
+                }
+            }
         }
         return false;
     }
