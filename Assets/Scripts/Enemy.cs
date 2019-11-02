@@ -26,9 +26,12 @@ public class Enemy : Vehicle
         velocity = Vector3.zero;
         acceleration = Vector3.zero;
         position = transform.position;
+        
+        //default testing
         ACCELERATION_SCALE = 1.5f;
         health = 10;
         maxHealth = 12;
+        damage = 3;
     }
 
     // Update is called once per frame
@@ -57,7 +60,7 @@ public class Enemy : Vehicle
         else
         {
             SeekAhead(player);
-        };
+        }
         Movement();
     }
 }

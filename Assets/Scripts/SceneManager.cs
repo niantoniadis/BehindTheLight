@@ -40,8 +40,12 @@ public class SceneManager : MonoBehaviour
                 // sceneMap.LoadCurrentRoom();
                 enemyManager.UpdateEnemyList();
                 enemyManager.MoveEnemy(player);
+                enemyManager.EnemyCollisions(player);
                 enemyManager.RemoveEnemies();
                 uIManager.UpdatePlayerData(player);
+                break;
+            case GameStates.GameOver:
+                Debug.Log("you lost bro");
                 break;
         }
         gameState = player.IsDead() ? GameStates.GameOver : GameStates.Game;

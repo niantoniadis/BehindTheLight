@@ -60,26 +60,21 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public Enemy GetCollidingEnemy(Player player)
-
+    public void EnemyCollisions(Player player)
     {
-        foreach (Enemy enemy in allEnemies)
+        foreach(Enemy enemy in allEnemies)
         {
-            if ((enemy).isCollidingWith(player))
+            if(enemy.isCollidingWith(player))
             {
-                return enemy;
+                Debug.Log("69 lol");
+                HandleCollisions(player, enemy.Damage);
             }
         }
-        return null;
     }
 
-    public void HandleCollisions(Player player)
+    public void HandleCollisions(Player player, int damage)
     {
-        Enemy colliding = GetCollidingEnemy(player);
-
-        if (colliding != null)
-        {
-            player.TakeDamage(colliding.Damage);
-        }
+        Debug.Log("taking damage");
+        player.TakeDamage(damage);
     }
 }
