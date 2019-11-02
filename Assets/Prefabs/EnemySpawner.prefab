@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies: []
-  enemy: {fileID: 4132737818199209007, guid: 85d54a26bde36294d87b5c564d7b63ea, type: 3}
+  enemy: {fileID: -7901512292745580874, guid: 85d54a26bde36294d87b5c564d7b63ea, type: 3}
   counter: 0
   enemyFrequency: 3
   maxEnemies: 5
