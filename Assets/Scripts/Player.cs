@@ -20,22 +20,25 @@ public class Player : Vehicle
 
     public void Move()
     {
-        if (Input.GetKey(KeyCode.W))
+        Vector3 totalMovement = Vector3.zero;
+        if(Input.GetKey(KeyCode.W))
         {
-            SetVelocity(new Vector3(0, maxSpeed, 0));
+            totalMovement += new Vector3(0, maxSpeed, 0);
         }
-        if (Input.GetKey(KeyCode.D))
+        if(Input.GetKey(KeyCode.D))
         {
-            SetVelocity(new Vector3(maxSpeed, 0, 0));
+            totalMovement += new Vector3(maxSpeed, 0, 0);
         }
-        if (Input.GetKey(KeyCode.A))
+        if(Input.GetKey(KeyCode.A))
         {
-            SetVelocity(new Vector3(-maxSpeed, 0, 0));
+            totalMovement += new Vector3(-maxSpeed, 0, 0);
         }
-        if (Input.GetKey(KeyCode.S))
+        if(Input.GetKey(KeyCode.S))
         {
-            SetVelocity(new Vector3(0, -maxSpeed, 0));
+            totalMovement += new Vector3(0, -maxSpeed, 0);
         }
+
+        SetVelocity(Vector3.ClampMagnitude(totalMovement, maxSpeed));
     }
 
     public void RotateVehicle()
