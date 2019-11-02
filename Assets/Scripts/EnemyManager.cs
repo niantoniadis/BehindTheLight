@@ -19,7 +19,12 @@ public class EnemyManager : MonoBehaviour
 
     }
 
-    void updateEnemyList()
+    public void AddRoom(Room room)
+    {
+        rooms.Add(room);
+    }
+
+    public void UpdateEnemyList()
     {
         foreach(Room room in rooms)
         {
