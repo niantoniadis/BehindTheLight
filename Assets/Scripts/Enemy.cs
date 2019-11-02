@@ -14,7 +14,7 @@ public class Enemy : Vehicle
     void Start()
     {
         mass = 10;
-        maxSpeed = 4f;
+        MAX_SPEED = 4f;
         int type = Random.Range(1, 3);
         if(type == 1)
             behavior = EnemyType.BABY;
