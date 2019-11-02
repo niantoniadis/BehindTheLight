@@ -125,13 +125,13 @@ public abstract class Vehicle : MonoBehaviour
         }
     }
 
-    public bool IsCollidingWith(Vehicle check)
+    public bool IsCollidingWith(CircleCollider2D[] check)
     {
         foreach(CircleCollider2D collider in GetComponents<CircleCollider2D>())
         {
-            foreach (CircleCollider2D checkCollider in check.GetComponents<CircleCollider2D>())
+            foreach (CircleCollider2D checkCollider in check)
             {
-                if (collider.IsTouching(GetComponent<CircleCollider2D>()))
+                if (collider.radius + checkCollider.radius > Mathf.Abs(Vector3.Distance(collider.bounds.center, checkCollider.bounds.center)))
                 {
                     return true;
                 }
