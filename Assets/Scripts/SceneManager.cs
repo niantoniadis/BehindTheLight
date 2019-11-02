@@ -8,6 +8,7 @@ public class SceneManager : MonoBehaviour
 {
     GameStates gameState = GameStates.Game;
     public Player player;
+    public Map sceneMap;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class SceneManager : MonoBehaviour
         {
             case GameStates.Game:
                 player.Move();
+                // sceneMap.LoadCurrentRoom();
                 break;
         }
     }
