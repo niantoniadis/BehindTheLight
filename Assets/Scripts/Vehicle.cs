@@ -12,6 +12,9 @@ public abstract class Vehicle : MonoBehaviour
     protected float maxSpeed;
     protected float rotation;
     protected int mass;
+    protected float maxHealth;
+    protected float health;
+    protected float damage;
 
     // Start is called before the first frame update
     void Start()
