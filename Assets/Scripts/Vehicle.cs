@@ -9,20 +9,21 @@ public abstract class Vehicle : MonoBehaviour
     protected Vector3 velocity;
     protected Vector3 desiredVelocity;
     protected Vector3 acceleration;
-    protected float maxSpeed;
     protected float rotation;
     protected int mass;
+
+    protected float ACCELERATION_SCALE;
+    protected float MAX_SPEED;
+    protected float FRICTION_COEF;
 
     // Start is called before the first frame update
     void Start()
     {
-        mass = 10;
-
-        maxSpeed = 5f;
-
         velocity = Vector3.zero;
         acceleration = Vector3.zero;
         position = transform.position;
+
+        mass = 1;
     }
 
     // Update is called once per frame
@@ -33,6 +34,8 @@ public abstract class Vehicle : MonoBehaviour
 
     public void Movement()
     {
+        velocity += acceleration * Time.deltaTime * ACCELERATION_SCALE;
+        Vector3.ClampMagnitude(velocity, MAX_SPEED);
         position += velocity * Time.deltaTime;
 
         transform.rotation = Quaternion.Euler(0, 0, rotation);
@@ -54,14 +57,20 @@ public abstract class Vehicle : MonoBehaviour
     public void Flee(Vehicle target)
     {
         desiredVelocity = position - target.position;
-        desiredVelocity = Vector3.ClampMagnitude(desiredVelocity, maxSpeed);
+        desiredVelocity = Vector3.ClampMagnitude(desiredVelocity, MAX_SPEED);
         acceleration += (desiredVelocity - velocity) / mass;
     }
 
     public void Seek(Vehicle target)
     {
         desiredVelocity = target.position - position;
-        desiredVelocity = Vector3.ClampMagnitude(desiredVelocity, maxSpeed);
+        desiredVelocity = Vector3.ClampMagnitude(desiredVelocity, MAX_SPEED);
         acceleration += ((desiredVelocity - velocity) / mass);
+    }
+
+    public void ApplyFriction(float coef)
+    {
+        Vector3 friction = -1 * velocity.normalized;
+        acceleration += friction * coef / mass;
     }
 }
