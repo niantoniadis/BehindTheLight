@@ -11,7 +11,8 @@ public class Player : Vehicle
         ACCELERATION_SCALE = 30.0f;
         MAX_SPEED = 1.5f;
         FRICTION_COEF = 1.0f;
-
+        health = 20;
+        maxHealth = 20;
         mass = 1;
     }
 

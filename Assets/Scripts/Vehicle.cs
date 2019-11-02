@@ -71,6 +71,14 @@ public abstract class Vehicle : MonoBehaviour
         acceleration += ((desiredVelocity - velocity) / mass);
     }
 
+    public void SeekAhead(Vehicle target)
+    {
+        desiredVelocity = (target.position + velocity * 1.1f) - position;
+        desiredVelocity = Vector3.ClampMagnitude(desiredVelocity, MAX_SPEED);
+        acceleration += ((desiredVelocity - velocity) / mass);
+
+    }
+
     public void ApplyFriction(float coef)
     {
         Vector3 friction = -1 * velocity.normalized;
@@ -85,4 +93,18 @@ public abstract class Vehicle : MonoBehaviour
         }
         return false;
     }
-}
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+    }
+
+    public void Heal(float heal)
+    {
+        health += heal;
+    }
+
+    public bool IsDead()
+    {
+        return health <= 0;
+    }
+}   
