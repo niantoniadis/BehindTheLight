@@ -74,7 +74,7 @@ public class Room : MonoBehaviour
         spawners.Add(Instantiate(spawner.gameObject, new Vector3(right + left, 0.9f * bottom, 0), Quaternion.identity).GetComponent<EnemySpawner>());
     }
 
-    List<EnemySpawner> GetSpawners()
+    public List<EnemySpawner> GetSpawners()
     {
         return spawners;
     }
