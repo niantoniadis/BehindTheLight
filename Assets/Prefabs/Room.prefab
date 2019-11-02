@@ -40,9 +40,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8836928427023818913}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 375906693d1846f4a802bb82b36145ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 55b2c77554993cc42a5e5f2703693730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xCoord: 0
+  yCoord: 0
   spawner: {fileID: 2908007251596414090, guid: 2febf8a39c0eb7543a0e6779b550491d, type: 3}
   spawners: []
   background: {fileID: 6034523301953240163, guid: 26bf7ad894b3f524d8659179c933a54d,

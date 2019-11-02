@@ -62,7 +62,7 @@ public class Room : MonoBehaviour
             bottomRoom = neighbor;
         }
     }
-    public void SpawnSpawners()
+    void SpawnSpawners()
     {
         float right = background.GetComponent<SpriteRenderer>().bounds.max.x;
         float left = background.GetComponent<SpriteRenderer>().bounds.min.x;
@@ -74,7 +74,7 @@ public class Room : MonoBehaviour
         spawners.Add(Instantiate(spawner.gameObject, new Vector3(right / 2, 0.9f * bottom, 0), Quaternion.identity).GetComponent<EnemySpawner>());
     }
 
-    List<EnemySpawner> GetSpawners()
+    public List<EnemySpawner> GetSpawners()
     {
         return spawners;
     }

@@ -49,4 +49,18 @@ public class EnemyManager : MonoBehaviour
             enemy.Move(player);
         }
     }
+
+    public Enemy GetCollidingEnemy(Player player)
+    {
+        foreach (Enemy enemy in allEnemies)
+        {
+            if ((enemy).isCollidingWith(player))
+            {
+
+            }
+        }
+        return null;
+    }
+
+
 }
