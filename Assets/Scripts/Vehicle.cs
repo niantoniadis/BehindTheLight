@@ -125,7 +125,7 @@ public abstract class Vehicle : MonoBehaviour
         }
     }
 
-    public bool isCollidingWith(Vehicle check)
+    public bool IsCollidingWith(Vehicle check)
     {
         foreach(CircleCollider2D collider in GetComponents<CircleCollider2D>())
         {

@@ -26,15 +26,18 @@ public class Enemy : Vehicle
         velocity = Vector3.zero;
         acceleration = Vector3.zero;
         position = transform.position;
+        
+        //default testing
         ACCELERATION_SCALE = 1.5f;
         health = 10;
         maxHealth = 12;
+        damage = 3;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void Move(Player player)
@@ -54,12 +57,10 @@ public class Enemy : Vehicle
                 // ACCELERATION_SCALE = 0.5f;
             Seek(player);
         }
-        if(behavior == EnemyType.BIGGESTBRAINIST)
+        else
         {
             SeekAhead(player);
         }
         Movement();
     }
-
-
 }
