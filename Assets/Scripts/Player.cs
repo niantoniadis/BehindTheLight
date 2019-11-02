@@ -80,6 +80,23 @@ public class Player : Vehicle
         }
     }
 
+    public override void Movement()
+    {
+        velocity += acceleration * Time.deltaTime * ACCELERATION_SCALE;
+        if (acceleration.magnitude == 0)
+        {
+            velocity *= 0.7f;
+        }
+        velocity = Vector3.ClampMagnitude(velocity, MAX_SPEED);
+        position += velocity * Time.deltaTime;
+
+        transform.rotation = Quaternion.Euler(0, 0, rotation);
+        transform.position = position;
+
+        acceleration = Vector3.zero;
+        
+    }
+
     public void Move()
     {
         if (Input.GetKey(KeyCode.Space) && stamina > 0)

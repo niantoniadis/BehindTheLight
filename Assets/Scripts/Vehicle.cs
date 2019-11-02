@@ -71,10 +71,6 @@ public abstract class Vehicle : MonoBehaviour
     public virtual void Movement()
     {
         velocity += acceleration * Time.deltaTime * ACCELERATION_SCALE;
-        if(acceleration.magnitude == 0)
-        {
-
-        }
         velocity = Vector3.ClampMagnitude(velocity, MAX_SPEED);
         position += velocity * Time.deltaTime;
 

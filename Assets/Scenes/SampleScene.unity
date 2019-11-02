@@ -356,11 +356,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d762647e8b4b4f4ea8c5d73193cc876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: -7078948095319160684, guid: 0ade695525eb39f4e9c8d29eff8aa344, type: 3}
+  player: {fileID: 6736682454924518405, guid: 0ade695525eb39f4e9c8d29eff8aa344, type: 3}
   sceneMap: {fileID: 0}
   enemyManager: {fileID: 1584613903}
   uIManager: {fileID: 708608260}
   room: {fileID: 5491154941593084133, guid: 78296abe7b6b2f4489ae078bf3de47c4, type: 3}
+  lineMat: {fileID: 2100000, guid: 98ab616dbf7e7cb4389db8dd58d5ddda, type: 2}
 --- !u!1 &708608258
 GameObject:
   m_ObjectHideFlags: 0
