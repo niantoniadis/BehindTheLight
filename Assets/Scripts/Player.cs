@@ -2,8 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlayerStates { Default, Attacking }
+
 public class Player : Vehicle
 {
+    public GameObject sword;
+    public CircleCollider2D attack;
+    PlayerStates currentState;
+    Vector2 coords;
     float maxStamina;
     float staminaResetBuffer;
     float stamina;
@@ -11,6 +17,12 @@ public class Player : Vehicle
     // Start is called before the first frame update
     void Start()
     {
+        currentState = PlayerStates.Default;
+        direction = new Vector3(1,0,0);
+        velocity = Vector3.zero;
+        acceleration = Vector3.zero;
+        position = transform.position;
+
         ACCELERATION_SCALE = 30.0f;
         MAX_SPEED = 5f;
         FRICTION_COEF = 1.0f;
@@ -60,6 +72,14 @@ public class Player : Vehicle
         }
     }
 
+    public PlayerStates CurrentState
+    {
+        get
+        {
+            return currentState;
+        }
+    }
+
     public void Move()
     {
         if (Input.GetKey(KeyCode.Space) && stamina > 0)
@@ -75,7 +95,6 @@ public class Player : Vehicle
 
         StaminaUpdate();
 
-        ApplyFriction(FRICTION_COEF);
         Vector3 totalMovement = Vector3.zero;
         if(Input.GetKey(KeyCode.W))
         {
@@ -93,10 +112,16 @@ public class Player : Vehicle
         {
             totalMovement += new Vector3(0, -MAX_SPEED, 0);
         }
+        if(velocity.magnitude > 0)
+        {
+            ApplyFriction(FRICTION_COEF);
+        }
 
         ApplyForce(Vector3.ClampMagnitude(totalMovement, MAX_SPEED));
 
         Movement();
+
+        RotateSword();
     }
 
     public void StaminaUpdate()
@@ -114,6 +139,20 @@ public class Player : Vehicle
 
     public void RotateVehicle()
     {
-        transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(Input.mousePosition.x - position.x, Input.mousePosition.y - position.y));
+        float prevRotation = rotation;
+        rotation = Mathf.Atan2(position.x - Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y - position.y) * Mathf.Rad2Deg + 90;
+        direction = Quaternion.Euler(0, 0, rotation - prevRotation) * direction;
+    }
+
+    public void RotateSword()
+    {
+        if (velocity.magnitude > 0.5f)
+        {
+            coords = new Vector2(velocity.x, -velocity.y);
+        }
+
+        float swordRotation;
+        swordRotation = Mathf.Atan2(coords.x, coords.y) * Mathf.Rad2Deg + 80;
+        sword.transform.rotation = Quaternion.Euler(0, 0, swordRotation);
     }
 }
