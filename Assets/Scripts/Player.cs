@@ -8,8 +8,11 @@ public class Player : Vehicle
     // Start is called before the first frame update
     void Start()
     {
-        mass = 10;
-        maxSpeed = 5f;
+        ACCELERATION_SCALE = 30.0f;
+        MAX_SPEED = 1.5f;
+        FRICTION_COEF = 1.0f;
+
+        mass = 1;
     }
 
     // Update is called once per frame
@@ -20,25 +23,26 @@ public class Player : Vehicle
 
     public void Move()
     {
+        ApplyFriction(FRICTION_COEF);
         Vector3 totalMovement = Vector3.zero;
         if(Input.GetKey(KeyCode.W))
         {
-            totalMovement += new Vector3(0, maxSpeed, 0);
+            totalMovement += new Vector3(0, MAX_SPEED, 0);
         }
         if(Input.GetKey(KeyCode.D))
         {
-            totalMovement += new Vector3(maxSpeed, 0, 0);
+            totalMovement += new Vector3(MAX_SPEED, 0, 0);
         }
         if(Input.GetKey(KeyCode.A))
         {
-            totalMovement += new Vector3(-maxSpeed, 0, 0);
+            totalMovement += new Vector3(-MAX_SPEED, 0, 0);
         }
         if(Input.GetKey(KeyCode.S))
         {
-            totalMovement += new Vector3(0, -maxSpeed, 0);
+            totalMovement += new Vector3(0, -MAX_SPEED, 0);
         }
 
-        SetVelocity(Vector3.ClampMagnitude(totalMovement, maxSpeed));
+        ApplyForce(Vector3.ClampMagnitude(totalMovement, MAX_SPEED));
     }
 
     public void RotateVehicle()
