@@ -8,6 +8,7 @@ public class SceneManager : MonoBehaviour
 {
     GameStates gameState = GameStates.Game;
     public Player player;
+    public Enemy enemy;
 
     public Map sceneMap;
     public EnemyManager enemyManager;
@@ -37,6 +38,7 @@ public class SceneManager : MonoBehaviour
                         player.RotateVehicle();
                         break;
                 }
+
                 // sceneMap.LoadCurrentRoom();
                 enemyManager.UpdateEnemyList(rooms);
                 enemyManager.MoveEnemy(player, rooms);

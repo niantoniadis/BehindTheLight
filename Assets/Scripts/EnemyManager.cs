@@ -71,9 +71,7 @@ public class EnemyManager : MonoBehaviour
     {
         foreach(Enemy enemy in allEnemies[room])
         {
-            Debug.Log("Enemy:" + enemy.Position);
-            Debug.Log("Player:" + player.Position);
-            if(enemy.IsCollidingWith(player))
+            if(enemy.IsCollidingWith(player.GetComponents<CircleCollider2D>()))
             {
                 Debug.Log("69 lol");
                 HandleCollisions(player, enemy.Damage);
