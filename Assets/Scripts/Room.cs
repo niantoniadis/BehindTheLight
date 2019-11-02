@@ -6,10 +6,12 @@ public class Room : MonoBehaviour
 {
     public EnemySpawner spawner;
     public List<EnemySpawner> spawners;
+    public GameObject background;
     // Start is called before the first frame update
     void Start()
     {
         spawners = new List<EnemySpawner>();
+        background = Instantiate(background.gameObject, background.transform.position, Quaternion.identity);
         SpawnSpawners();
     }
 
@@ -21,13 +23,17 @@ public class Room : MonoBehaviour
 
     void SpawnSpawners()
     {
-        spawners.Add(Instantiate(spawner.gameObject, new Vector3(10, 0, 0), Quaternion.identity).GetComponent<EnemySpawner>());
-        spawners.Add(Instantiate(spawner.gameObject, new Vector3(-10, 0, 0), Quaternion.identity).GetComponent<EnemySpawner>());
-        spawners.Add(Instantiate(spawner.gameObject, new Vector3(0, 10, 0), Quaternion.identity).GetComponent<EnemySpawner>());
-        spawners.Add(Instantiate(spawner.gameObject, new Vector3(0, -10, 0), Quaternion.identity).GetComponent<EnemySpawner>());
+        float right = background.GetComponent<SpriteRenderer>().bounds.max.x;
+        float left = background.GetComponent<SpriteRenderer>().bounds.min.x;
+        float top = background.GetComponent<SpriteRenderer>().bounds.max.y;
+        float bottom = background.GetComponent<SpriteRenderer>().bounds.min.y;
+        spawners.Add(Instantiate(spawner.gameObject, new Vector3(0.9f * right, top / 2, 0), Quaternion.identity).GetComponent<EnemySpawner>());
+        spawners.Add(Instantiate(spawner.gameObject, new Vector3(0.9f * left, top / 2, 0), Quaternion.identity).GetComponent<EnemySpawner>());
+        spawners.Add(Instantiate(spawner.gameObject, new Vector3(right / 2, 0.9f * top, 0), Quaternion.identity).GetComponent<EnemySpawner>());
+        spawners.Add(Instantiate(spawner.gameObject, new Vector3(right / 2, 0.9f * bottom, 0), Quaternion.identity).GetComponent<EnemySpawner>());
     }
 
-    public List<EnemySpawner> getSpawners()
+    public List<EnemySpawner> GetSpawners()
     {
         return spawners;
     }

@@ -16,18 +16,31 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+    }
+
+    void updateEnemyList()
+    {
         foreach(Room room in rooms)
         {
-            List<EnemySpawner> spawners = room.getSpawners();
+            List<EnemySpawner> spawners = room.GetSpawners();
             foreach(EnemySpawner spawn in spawners)
             {
-                List<Enemy> enemies = spawn.getEnemies();
+                List<Enemy> enemies = spawn.GetEnemies();
                 foreach(Enemy en in enemies)
                 {
                     if(!allEnemies.Contains(en))
                         allEnemies.Add(en);
                 } 
             }    
-        }    
+        }
+    }
+
+    public void MoveEnemy(Player player)
+    {
+        foreach(Enemy enemy in allEnemies)
+        {
+            enemy.Move(player);
+        }
     }
 }
