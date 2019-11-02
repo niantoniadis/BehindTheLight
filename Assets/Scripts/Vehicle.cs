@@ -11,9 +11,9 @@ public abstract class Vehicle : MonoBehaviour
     protected Vector3 acceleration;
     protected float rotation;
     protected int mass;
-    protected float maxHealth;
-    protected float health;
-    protected float damage;
+    protected int maxHealth;
+    protected int health;
+    protected int damage;
 
     protected float ACCELERATION_SCALE = 1;
     protected float MAX_SPEED;
@@ -35,7 +35,7 @@ public abstract class Vehicle : MonoBehaviour
         
     }
 
-    public float Damage
+    public int Damage
     {
         get
         {
@@ -46,7 +46,7 @@ public abstract class Vehicle : MonoBehaviour
     public void Movement()
     {
         velocity += acceleration * Time.deltaTime * ACCELERATION_SCALE;
-        Vector3.ClampMagnitude(velocity, MAX_SPEED);
+        velocity = Vector3.ClampMagnitude(velocity, MAX_SPEED);
         position += velocity * Time.deltaTime;
 
         transform.rotation = Quaternion.Euler(0, 0, rotation);
@@ -107,12 +107,12 @@ public abstract class Vehicle : MonoBehaviour
         }
         return false;
     }
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         health -= damage;
     }
 
-    public void Heal(float heal)
+    public void Heal(int heal)
     {
         health += heal;
     }

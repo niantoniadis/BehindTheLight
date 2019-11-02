@@ -11,8 +11,9 @@ public class SceneManager : MonoBehaviour
 
     public Map sceneMap;
     public EnemyManager enemyManager;
+    public UIManager uIManager;
     public Room room;
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +34,7 @@ public class SceneManager : MonoBehaviour
                 enemyManager.UpdateEnemyList();
                 enemyManager.MoveEnemy(player);
                 enemyManager.RemoveEnemies();
+                uIManager.UpdatePlayerData(player);
                 break;
         }
         gameState = player.IsDead() ? GameStates.GameOver : GameStates.Game;
