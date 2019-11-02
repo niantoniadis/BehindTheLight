@@ -14,6 +14,7 @@ public abstract class Vehicle : MonoBehaviour
     protected int maxHealth;
     protected int health;
     protected int damage;
+    protected float knockBack;
 
     protected float ACCELERATION_SCALE = 1;
     protected float MAX_SPEED;
@@ -22,6 +23,7 @@ public abstract class Vehicle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        direction = Vector3.zero;
         velocity = Vector3.zero;
         acceleration = Vector3.zero;
         position = transform.position;
@@ -43,9 +45,36 @@ public abstract class Vehicle : MonoBehaviour
         }
     }
 
+    public Vector3 Direction
+    {
+        get
+        {
+            return direction;
+        }
+    }
+
+    public Vector3 Position
+    {
+        get
+        {
+            return position;
+        }
+    }
+    public Vector3 Velocity
+    {
+        get
+        {
+            return velocity;
+        }
+    }
+
     public void Movement()
     {
         velocity += acceleration * Time.deltaTime * ACCELERATION_SCALE;
+        if(acceleration.magnitude == 0)
+        {
+
+        }
         velocity = Vector3.ClampMagnitude(velocity, MAX_SPEED);
         position += velocity * Time.deltaTime;
 
@@ -90,7 +119,14 @@ public abstract class Vehicle : MonoBehaviour
     public void ApplyFriction(float coef)
     {
         Vector3 friction = -1 * velocity.normalized;
-        acceleration += friction * coef / mass;
+        if((acceleration.x > 0 && (acceleration + friction * coef / mass).x < 0) || (acceleration.x > 0 && (acceleration + friction * coef / mass).x < 0))
+        {
+            acceleration.x = 0;
+        }
+        if ((acceleration.y > 0 && (acceleration + friction * coef / mass).y < 0) || (acceleration.y > 0 && (acceleration + friction * coef / mass).y < 0))
+        {
+            acceleration.y = 0;
+        }
     }
 
     public bool isCollidingWith(Vehicle check)

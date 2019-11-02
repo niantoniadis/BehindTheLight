@@ -13,6 +13,7 @@ public class SceneManager : MonoBehaviour
     public EnemyManager enemyManager;
     public UIManager uIManager;
     public Room room;
+    public Material lineMat;
     
     // Start is called before the first frame update
     void Start()
@@ -29,7 +30,13 @@ public class SceneManager : MonoBehaviour
         switch (gameState)
         {
             case GameStates.Game:
-                player.Move();
+                switch (player.CurrentState)
+                {
+                    case PlayerStates.Default:
+                        player.Move();
+                        player.RotateVehicle();
+                        break;
+                }
                 // sceneMap.LoadCurrentRoom();
                 enemyManager.UpdateEnemyList();
                 enemyManager.MoveEnemy(player);
@@ -38,5 +45,14 @@ public class SceneManager : MonoBehaviour
                 break;
         }
         gameState = player.IsDead() ? GameStates.GameOver : GameStates.Game;
+    }
+
+    private void OnRenderObject()
+    {
+        lineMat.SetPass(0);
+        GL.Begin(GL.LINES);
+        GL.Vertex(player.Position);
+        GL.Vertex(player.Position + player.Direction);
+        GL.End();
     }
 }
