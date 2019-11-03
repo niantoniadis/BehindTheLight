@@ -14,10 +14,10 @@ public class Map : MonoBehaviour
     void Start()
     {
         CreateRoom(0, 0);
-        CreateRoom(0, 1);
-        CreateRoom(0, -1);
-        CreateRoom(1, 0);
-        CreateRoom(-1, 0);
+        //CreateRoom(0, 1);
+        //CreateRoom(0, -1);
+        //CreateRoom(1, 0);
+        //CreateRoom(-1, 0);
         //DrawCurrentRoom();
     }
 

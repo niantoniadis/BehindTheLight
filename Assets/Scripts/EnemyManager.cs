@@ -63,7 +63,7 @@ public class EnemyManager : MonoBehaviour
             {
                 if(enemy.IsDead())
                 {
-                    Destroy(enemy);
+                    //Destroy(enemy);
                 }
             }
         }
@@ -104,13 +104,5 @@ public class EnemyManager : MonoBehaviour
         Debug.Log("taking damage");
         player.TakeDamage(enemy.Damage);
         player.TakeKnockback(enemy);
-    }
-
-    public void SpawnEnemyTick(Room room)
-    {
-        foreach(EnemySpawner spawner in room.GetSpawners())
-        {
-            spawner.SpawnEnemy();
-        }
     }
 }
