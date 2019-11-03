@@ -13,19 +13,23 @@ public class SceneManager : MonoBehaviour
     public EnemyManager enemyManager;
     public UIManager uIManager;
     public Material lineMat;
+    public Room basic;
+    List<Room> room;
     
     // Start is called before the first frame update
     void Start()
     {
         gameState = GameStates.Game;
-        player = Instantiate(player.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Player>();      
-        sceneMap = Instantiate(sceneMap.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Map>();
+        player = Instantiate(player.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Player>();
+        //sceneMap = Instantiate(sceneMap.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Map>();
+        room = new List<Room>();
+        room.Add(basic);
     }
 
     // Update is called once per frame
     void Update()
     {
-        List<Room> rooms = sceneMap.GetRooms();
+        List<Room> rooms = room;
         switch (gameState)
         {
             case GameStates.Game:
