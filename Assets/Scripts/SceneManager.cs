@@ -35,6 +35,7 @@ public class SceneManager : MonoBehaviour
                         player.Move();
                         if(Input.GetMouseButtonDown(0))
                         {
+                            Debug.Log("dingdong");
                             player.attacking = true;   
                         }
                         player.AnimateAttack();
