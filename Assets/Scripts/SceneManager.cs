@@ -13,21 +13,19 @@ public class SceneManager : MonoBehaviour
     public Map sceneMap;
     public EnemyManager enemyManager;
     public UIManager uIManager;
-    public Room room;
-    public List<Room> rooms = new List<Room>();
     public Material lineMat;
     
     // Start is called before the first frame update
     void Start()
     {
         gameState = GameStates.Game;
-        player = Instantiate(player.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Player>();
-        rooms.Add(Instantiate(room.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Room>());        
+        player = Instantiate(player.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Player>();      
     }
 
     // Update is called once per frame
     void Update()
     {
+        List<Room> rooms = sceneMap.GetRooms();
         switch (gameState)
         {
             case GameStates.Game:
@@ -47,7 +45,6 @@ public class SceneManager : MonoBehaviour
                         player.RotateVehicle();
                         break;
                 }
-
                 // sceneMap.LoadCurrentRoom();
                 enemyManager.UpdateEnemyList(rooms);
                 enemyManager.MoveEnemy(player, rooms);

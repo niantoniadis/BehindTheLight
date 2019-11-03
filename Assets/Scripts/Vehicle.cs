@@ -14,7 +14,7 @@ public abstract class Vehicle : MonoBehaviour
     protected int maxHealth;
     protected int health;
     protected int damage;
-    protected float knockBack;
+    public float knockBack;
 
     protected float ACCELERATION_SCALE = 1;
     protected float MAX_SPEED;
@@ -127,21 +127,27 @@ public abstract class Vehicle : MonoBehaviour
 
     public bool IsCollidingWith(CircleCollider2D[] check)
     {
-        foreach(CircleCollider2D collider in GetComponents<CircleCollider2D>())
-        {
-            foreach (CircleCollider2D checkCollider in check)
-            {
-                if (collider.radius + checkCollider.radius > Mathf.Abs(Vector3.Distance(collider.bounds.center, checkCollider.bounds.center)))
-                {
-                    return true;
-                }
-            }
-        }
+        // foreach(CircleCollider2D collider in GetComponents<CircleCollider2D>())
+        // {
+        //     foreach (CircleCollider2D checkCollider in check)
+        //     {
+        //         if (collider.radius + checkCollider.radius > Mathf.Abs(Vector3.Distance(collider.bounds.center, checkCollider.bounds.center)))
+        //         {
+        //             return true;
+        //         }
+        //     }
+        // }
         return false;
     }
+    
     public void TakeDamage(int damage)
     {
         health -= damage;
+    }
+
+    public void TakeKnockback(Vehicle vehicle)
+    {
+        ApplyForce(vehicle.position);
     }
 
     public void Heal(int heal)

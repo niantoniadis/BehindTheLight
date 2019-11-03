@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    public Dictionary<Room, List<Enemy>> allEnemies;
+    public Dictionary<Room, List<Enemy>> allEnemies = new Dictionary<Room, List<Enemy>>();
     // Start is called before the first frame update
     void Start()
     { 
-        allEnemies = new Dictionary<Room, List<Enemy>>();
+
     }
     
     // Update is called once per frame
@@ -22,10 +22,11 @@ public class EnemyManager : MonoBehaviour
         foreach(Room room in rooms)
         {
             List<EnemySpawner> spawners = room.GetSpawners();
+            List<Enemy> enemies;
+            List<Enemy> roomEnemies;
             foreach(EnemySpawner spawn in spawners)
             {
-                List<Enemy> enemies = spawn.GetEnemies();
-                List<Enemy> roomEnemies;
+                enemies = spawn.GetEnemies();
                 if(allEnemies.ContainsKey(room))
                     roomEnemies = allEnemies[room];
                 else
@@ -83,9 +84,12 @@ public class EnemyManager : MonoBehaviour
     {
         foreach(Enemy enemy in allEnemies[room])
         {
-            if(enemy.IsCollidingWith(player.GetComponentInChildren<CircleCollider2D>()))
+            CircleCollider2D[] check = new CircleCollider2D[1];
+            check[0] = player.GetComponentInChildren<CircleCollider2D>();
+            if(enemy.IsCollidingWith(check))
             {
                 enemy.TakeDamage(player.Damage);
+                enemy.TakeKnockback(player);
             }
         }
     }
