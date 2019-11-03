@@ -102,7 +102,6 @@ public class EnemyManager : MonoBehaviour
 
                 if(enemy.IsCollidingWith(attack))
                 {
-                    Debug.Log("donzo");
                     enemy.TakeDamage(player.Damage);
                     enemy.TakeKnockback(player);
                 }
