@@ -10,7 +10,6 @@ public enum EnemyType
 public class Enemy : Vehicle
 {
     protected EnemyType behavior;
-    float damageCounter = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +34,7 @@ public class Enemy : Vehicle
         ACCELERATION_SCALE = 1.5f;
         health = 12;
         maxHealth = 12;
-        damage = 3;
+        damage = 1;
         knockback = 18;
     }
 

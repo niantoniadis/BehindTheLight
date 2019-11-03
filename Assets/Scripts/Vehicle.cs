@@ -15,7 +15,7 @@ public abstract class Vehicle : MonoBehaviour
     protected int maxHealth;
     protected int health;
     protected int damage;
-    public int knockback;
+    protected int knockback;
 
     protected float ACCELERATION_SCALE = 1;
     protected float MAX_SPEED;
@@ -68,6 +68,22 @@ public abstract class Vehicle : MonoBehaviour
         get
         {
             return velocity;
+        }
+    }
+
+    public int Knockback
+    {
+        get
+        {
+            return knockback;
+        }
+    }
+
+    public int Health
+    {
+        get
+        {
+            return health;
         }
     }
 
@@ -161,7 +177,6 @@ public abstract class Vehicle : MonoBehaviour
     public void TakeKnockback(Vehicle vehicle)
     {
         Vector3 force = position - vehicle.position;
-        force.Normalize();
         ApplyForce(force * vehicle.knockback);
     }
 
