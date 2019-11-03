@@ -37,6 +37,11 @@ public class EnemySpawner : MonoBehaviour
     public void SpawnEnemy()
     {
         counter += Time.deltaTime;
+
+        //if (enemyFrequency - Time.deltaTime)
+        //{
+        //
+        //}
         if(counter >= enemyFrequency && enemies.Count < maxEnemies && active)
         {
             counter = 0;

@@ -38,15 +38,15 @@ public class PowerUpManager : MonoBehaviour
             }
             else if (rng > 0.6)
             {
-                powerUps.Add(Instantiate(health.gameObject, pos, Quaternion.identity).GetComponent<PowerUp>());
+                powerUps.Add(Instantiate(largeFlash.gameObject, pos, Quaternion.identity).GetComponent<PowerUp>());
             }
             else if (rng > 0.4)
             {
-                powerUps.Add(Instantiate(health.gameObject, pos, Quaternion.identity).GetComponent<PowerUp>());
+                powerUps.Add(Instantiate(largeFlash.gameObject, pos, Quaternion.identity).GetComponent<PowerUp>());
             }
             else if (rng > 0.2)
             {
-                powerUps.Add(Instantiate(health.gameObject, pos, Quaternion.identity).GetComponent<PowerUp>());
+                powerUps.Add(Instantiate(largeFlash.gameObject, pos, Quaternion.identity).GetComponent<PowerUp>());
             }
             else
             {
@@ -64,9 +64,10 @@ public class PowerUpManager : MonoBehaviour
                 switch (powerUps[i].Type)
                 {
                     case PowerUpType.Health:
-                        player.Heal(10);
+                        player.Heal(5);
                         break;
                     case PowerUpType.LargeFlash:
+                        player.EnlargeFlashlight(powerUps[i].Cooldown);
                         break;
                     case PowerUpType.DoubleDamage:
                         break;
@@ -76,6 +77,19 @@ public class PowerUpManager : MonoBehaviour
                         break;
                 }
 
+                Destroy(powerUps[i].gameObject);
+                powerUps.RemoveAt(i);
+                i--;
+            }
+        }
+    }
+
+    public void DeleteUneeded()
+    {
+        for (int i = 0; i < powerUps.Count; i++)
+        {
+            if(powerUps[i].LifeSpan < 0)
+            {
                 Destroy(powerUps[i].gameObject);
                 powerUps.RemoveAt(i);
                 i--;
