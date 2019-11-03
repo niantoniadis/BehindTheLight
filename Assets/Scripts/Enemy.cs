@@ -33,7 +33,7 @@ public class Enemy : Vehicle
         
         //default testing
         ACCELERATION_SCALE = 1.5f;
-        health = 10;
+        health = 12;
         maxHealth = 12;
         damage = 3;
         knockback = 18;

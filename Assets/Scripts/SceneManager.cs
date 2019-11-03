@@ -45,7 +45,14 @@ public class SceneManager : MonoBehaviour
                         player.RotateVehicle();
                         break;
                 }
-                enemyManager.SpawnEnemyTick(currentRoom);
+                currentRoom.ActivateSpawners();
+                foreach(Room r in rooms)
+                {
+                    if(r != currentRoom)
+                    {
+                        r.DeactivateSpawners();
+                    }
+                }
                 enemyManager.UpdateEnemyList(rooms);
                 enemyManager.MoveEnemy(player, rooms);
                 enemyManager.EnemyCollisions(player, currentRoom);

@@ -6,9 +6,21 @@ public class EnemySpawner : MonoBehaviour
 {
     List<Enemy> enemies = new List<Enemy>();
     public Enemy enemy;
-    float counter = 0;
+    bool active = false;
     float enemyFrequency = 6f;
     int maxEnemies = 1;
+
+    public bool Active
+    {
+        get
+        {
+            return active;
+        }
+        set
+        {
+            active = value;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -18,13 +30,13 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        SpawnEnemy();
     }
 
     public void SpawnEnemy()
     {
         counter += Time.deltaTime;
-        if(counter >= enemyFrequency && enemies.Count < maxEnemies)
+        if(counter >= enemyFrequency && enemies.Count < maxEnemies && active)
         {
             counter = 0;
             enemies.Add(Instantiate(enemy.gameObject, transform.position, Quaternion.identity).GetComponent<Enemy>());

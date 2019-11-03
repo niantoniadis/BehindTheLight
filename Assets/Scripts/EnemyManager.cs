@@ -105,12 +105,4 @@ public class EnemyManager : MonoBehaviour
         player.TakeDamage(enemy.Damage);
         player.TakeKnockback(enemy);
     }
-
-    public void SpawnEnemyTick(Room room)
-    {
-        foreach(EnemySpawner spawner in room.GetSpawners())
-        {
-            spawner.SpawnEnemy();
-        }
-    }
 }

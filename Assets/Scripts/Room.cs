@@ -21,12 +21,11 @@ public class Room : MonoBehaviour
     }
         
     public EnemySpawner spawner;
-    public List<EnemySpawner> spawners;
+    List<EnemySpawner> spawners = new List<EnemySpawner>();
     public GameObject background;
     // Start is called before the first frame update
     void Start()
     {
-        spawners = new List<EnemySpawner>();
         background = Instantiate(background.gameObject, background.transform.position, Quaternion.identity);
         SpawnSpawners();
     }
@@ -77,6 +76,22 @@ public class Room : MonoBehaviour
     public List<EnemySpawner> GetSpawners()
     {
         return spawners;
+    }
+
+    public void ActivateSpawners()
+    {
+        foreach(EnemySpawner spawner in spawners)
+        {
+            spawner.Active = true;
+        }
+    }
+
+    public void DeactivateSpawners()
+    {
+        foreach (EnemySpawner spawner in spawners)
+        {
+            spawner.Active = false;
+        }
     }
 
 }
