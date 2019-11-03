@@ -37,6 +37,7 @@ public class Player : Vehicle
         stamina = maxStamina;
         staminaResetBuffer = 1.5f;
         attackTime = 0.5f;
+        knockback = 8;
     }
 
     // Update is called once per frame
