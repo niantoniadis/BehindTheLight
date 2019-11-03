@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e182117cc9f7024794b55a92540a81c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockBack: 0
+  knockback: 0
   sword: {fileID: 4701957266473042498}
   light: {fileID: 4218173721002499038}
   attack: {fileID: 2767822835848558946}
