@@ -20,6 +20,7 @@ public class SceneManager : MonoBehaviour
     {
         gameState = GameStates.Game;
         player = Instantiate(player.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Player>();      
+        sceneMap = Instantiate(sceneMap.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Map>();
     }
 
     // Update is called once per frame

@@ -24,16 +24,17 @@ public class EnemyManager : MonoBehaviour
             List<EnemySpawner> spawners = room.GetSpawners();
             List<Enemy> enemies;
             List<Enemy> roomEnemies;
+            if(allEnemies.ContainsKey(room))
+                roomEnemies = allEnemies[room];
+            else
+            {
+                roomEnemies = new List<Enemy>();
+                allEnemies.Add(room, roomEnemies);
+            }
             foreach(EnemySpawner spawn in spawners)
             {
                 enemies = spawn.GetEnemies();
-                if(allEnemies.ContainsKey(room))
-                    roomEnemies = allEnemies[room];
-                else
-                {
-                    roomEnemies = new List<Enemy>();
-                    allEnemies.Add(room, roomEnemies);
-                }
+                
                 foreach(Enemy en in enemies)
                 {
                     if(!roomEnemies.Contains(en) && en != null)

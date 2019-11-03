@@ -18,7 +18,7 @@ public class Map : MonoBehaviour
         CreateRoom(0, -1);
         CreateRoom(1, 0);
         CreateRoom(-1, 0);
-        DrawCurrentRoom();
+        //DrawCurrentRoom();
     }
 
     // Update is called once per frame
