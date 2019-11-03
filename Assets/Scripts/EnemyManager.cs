@@ -66,7 +66,6 @@ public class EnemyManager : MonoBehaviour
                 enemy = allEnemies[room][i];
                 if(enemy.IsDead())
                 {
-                    Debug.Log("dead");
                     allEnemies[room].Remove(enemy);
                     Destroy(enemy.gameObject);
                 }
@@ -104,7 +103,6 @@ public class EnemyManager : MonoBehaviour
 
                 if(enemy.IsCollidingWith(attack))
                 {
-                    Debug.Log(enemy.Health);
                     enemy.TakeDamage(player.Damage);
                     enemy.TakeKnockback(player);
                 }
