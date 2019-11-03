@@ -63,7 +63,7 @@ public class EnemyManager : MonoBehaviour
             {
                 if(enemy.IsDead())
                 {
-                    Destroy(enemy);
+                    //Destroy(enemy);
                 }
             }
         }
