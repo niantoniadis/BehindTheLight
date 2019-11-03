@@ -6,6 +6,7 @@ public class EnemyManager : MonoBehaviour
 {
     public Dictionary<Room, List<Enemy>> allEnemies = new Dictionary<Room, List<Enemy>>();
     float damageTimeCounter = 0f;
+
     // Start is called before the first frame update
     void Start()
     { 
@@ -57,14 +58,16 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public void RemoveEnemies(List<Room> rooms)
+    public Vector3 RemoveEnemies(List<Room> rooms)
     {
+        Vector3 pos = Vector3.positiveInfinity;
         foreach(Room room in rooms)
         {
             for(int i = 0; i < allEnemies[room].Count; i++)
             {
                 if(allEnemies[room][i].IsDead())
                 {
+                    pos = allEnemies[room][i].Position;
                     Destroy(allEnemies[room][i].gameObject);
                     allEnemies[room].RemoveAt(i);
                 }
@@ -74,6 +77,7 @@ public class EnemyManager : MonoBehaviour
                 spawner.ClearEnemyList();
             }
         }
+        return pos;
     }
 
     public void EnemyCollisions(Player player, Room room)

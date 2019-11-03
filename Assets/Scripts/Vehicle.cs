@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class Vehicle : MonoBehaviour
 {
-    protected Circle main;
     protected Vector3 direction;
     protected Vector3 position;
     protected Vector3 velocity;
@@ -28,8 +27,6 @@ public abstract class Vehicle : MonoBehaviour
         velocity = Vector3.zero;
         acceleration = Vector3.zero;
         position = transform.position;
-
-        main = GetComponentInChildren<Circle>();
 
         mass = 1;
     }
@@ -84,14 +81,6 @@ public abstract class Vehicle : MonoBehaviour
         get
         {
             return health;
-        }
-    }
-
-    public Circle Main
-    {
-        get
-        {
-            return main;
         }
     }
 

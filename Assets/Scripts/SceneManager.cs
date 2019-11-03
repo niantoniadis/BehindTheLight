@@ -11,6 +11,7 @@ public class SceneManager : MonoBehaviour
 
     public Map sceneMap;
     public EnemyManager enemyManager;
+    public PowerUpManager powerUpManager;
     public UIManager uIManager;
     public Material lineMat;
     
@@ -56,7 +57,8 @@ public class SceneManager : MonoBehaviour
                 enemyManager.UpdateEnemyList(rooms);
                 enemyManager.MoveEnemy(player, rooms);
                 enemyManager.EnemyCollisions(player, currentRoom);
-                enemyManager.RemoveEnemies(rooms);
+                powerUpManager.ChancePowerSpawn(enemyManager.RemoveEnemies(rooms));
+                powerUpManager.HandleCollision(player);
                 uIManager.UpdatePlayerData(player);
                 break;
             case GameStates.GameOver:

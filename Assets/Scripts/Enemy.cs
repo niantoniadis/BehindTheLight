@@ -39,7 +39,7 @@ public class Enemy : Vehicle
         ACCELERATION_SCALE = 1.5f;
         health = 12;
         maxHealth = 12;
-        damage = 3;
+        damage = 5;
         knockback = 18;
         healthBar.SetActive(false);
     }
@@ -72,7 +72,7 @@ public class Enemy : Vehicle
     public void Move(Player player)
     {
         CircleCollider2D[] check = new CircleCollider2D[1];
-        check[0] = player.light;
+        check[0] = player.lightCollider;
         if(behavior == EnemyType.BABY)
         {
             if(!IsCollidingWith(check))
@@ -98,7 +98,7 @@ public class Enemy : Vehicle
             if(IsCollidingWith(check))
             {
                 ACCELERATION_SCALE = 1.5f;
-                Flee(player.light.bounds.center);
+                Flee(player.lightCollider.bounds.center);
             }
             else
             {

@@ -7,7 +7,7 @@ public enum PlayerStates { Default, Attacking }
 public class Player : Vehicle
 {
     public GameObject sword;
-    public CircleCollider2D light;
+    public CircleCollider2D lightCollider;
     public CircleCollider2D attack;
     float attackingTimer = 0;
     float attackTime;
@@ -70,14 +70,6 @@ public class Player : Vehicle
         get
         {
             return maxHealth;
-        }
-    }
-
-    public float Health
-    {
-        get
-        {
-            return health;
         }
     }
 
