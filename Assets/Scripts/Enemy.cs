@@ -43,19 +43,23 @@ public class Enemy : Vehicle
 
     public void Move(Player player)
     {
+        CircleCollider2D[] check = new CircleCollider2D[1];
+        check[0] = player.light;
         if(behavior == EnemyType.BABY)
         {
-            //if not light
-            Seek(player);
+            if(!IsCollidingWith(check))
+            {
+                Seek(player);
+            }
         }
         if(behavior == EnemyType.LURKER)
         {
-            //if dark 
-            //{
-                // ACCELERATION_SCALE = 3.0f;
-            //}
-            //else
-                // ACCELERATION_SCALE = 0.5f;
+            if(!IsCollidingWith(check)) 
+            {
+                ACCELERATION_SCALE = 3.0f;
+            }
+            else
+                ACCELERATION_SCALE = 0.5f;
             Seek(player);
         }
         else

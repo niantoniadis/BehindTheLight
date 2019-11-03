@@ -7,6 +7,7 @@ public enum PlayerStates { Default, Attacking }
 public class Player : Vehicle
 {
     public GameObject sword;
+    public CircleCollider2D light;
     public CircleCollider2D attack;
     float attackingTimer = 0;
     float attackTime;
