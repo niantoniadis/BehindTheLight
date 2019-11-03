@@ -36,7 +36,7 @@ public class Player : Vehicle
         maxStamina = 4f;
         stamina = maxStamina;
         staminaResetBuffer = 1.5f;
-        attackTime = 0.5f;
+        attackTime = 0.1f;
         knockback = 8;
     }
 
@@ -155,11 +155,11 @@ public class Player : Vehicle
             // -30 degress from direction
             float swordRotation = Mathf.Atan2(-direction.x, direction.y) * Mathf.Rad2Deg;
             swordRotation += 120f;//sword.transform.rotation.z + 60 * attackingTimer / attackTime;
-            sword.transform.rotation = Quaternion.Euler(0, 0, swordRotation);
+            sword.transform.rotation = Quaternion.Euler(0, 0, swordRotation - 60 * attackingTimer/attackTime);
             if(attackingTimer >= attackTime)
             {
-            //    swordRotation = Mathf.Atan2(coords.x, coords.y) * Mathf.Rad2Deg + 80;
-            //    sword.transform.rotation = Quaternion.Euler(0, 0, swordRotation);
+                swordRotation = Mathf.Atan2(coords.x, coords.y) * Mathf.Rad2Deg + 80;
+                sword.transform.rotation = Quaternion.Euler(0, 0, swordRotation);
                 attackingTimer = 0;
                 attacking = false;
             }
