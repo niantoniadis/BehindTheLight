@@ -8,25 +8,28 @@ public class SceneManager : MonoBehaviour
 {
     GameStates gameState = GameStates.Game;
     public Player player;
-    public Enemy enemy;
 
     public Map sceneMap;
     public EnemyManager enemyManager;
     public UIManager uIManager;
     public Material lineMat;
+    public Room basic;
+    List<Room> room;
     
     // Start is called before the first frame update
     void Start()
     {
         gameState = GameStates.Game;
-        player = Instantiate(player.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Player>();      
-        sceneMap = Instantiate(sceneMap.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Map>();
+        player = Instantiate(player.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Player>();
+        //sceneMap = Instantiate(sceneMap.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Map>();
+        room = new List<Room>();
+        room.Add(basic);
     }
 
     // Update is called once per frame
     void Update()
     {
-        List<Room> rooms = sceneMap.GetRooms();
+        List<Room> rooms = room;
         switch (gameState)
         {
             case GameStates.Game:
@@ -38,11 +41,11 @@ public class SceneManager : MonoBehaviour
                         {
                             player.attacking = true;   
                         }
-                        if(player.attacking)
+                        player.AnimateAttack();
+                        if (player.attacking)
                         {
                             enemyManager.SwordCollisions(player, rooms[0]);
                         }
-                        player.AnimateAttack();
                         player.RotateVehicle();
                         break;
                 }
@@ -58,14 +61,5 @@ public class SceneManager : MonoBehaviour
                 break;
         }
         gameState = player.IsDead() ? GameStates.GameOver : GameStates.Game;
-    }
-
-    private void OnRenderObject()
-    {
-        lineMat.SetPass(0);
-        GL.Begin(GL.LINES);
-        GL.Vertex(player.Position);
-        GL.Vertex(player.Position + player.Direction);
-        GL.End();
     }
 }
