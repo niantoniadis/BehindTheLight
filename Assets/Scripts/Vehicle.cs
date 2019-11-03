@@ -24,7 +24,7 @@ public abstract class Vehicle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        direction = Vector3.zero;
+        direction = new Vector3(1, 0, 0);
         velocity = Vector3.zero;
         acceleration = Vector3.zero;
         position = transform.position;
@@ -87,6 +87,8 @@ public abstract class Vehicle : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0, 0, rotation);
         transform.position = position;
+        direction = Quaternion.Euler(0, 0, 3f) * direction;
+        direction.Normalize();
 
         acceleration = Vector3.zero;
     }
@@ -158,7 +160,9 @@ public abstract class Vehicle : MonoBehaviour
 
     public void TakeKnockback(Vehicle vehicle)
     {
-        ApplyForce(vehicle.position);
+        Vector3 force = position - vehicle.position;
+        force.Normalize();
+        ApplyForce(force * 8);
     }
 
     public void Heal(int heal)

@@ -14,6 +14,7 @@ public class Enemy : Vehicle
     // Start is called before the first frame update
     void Start()
     {
+        direction = new Vector3(1, 0, 0);
         mass = 1;
         MAX_SPEED = 6f;
         int type = Random.Range(1, 3);
