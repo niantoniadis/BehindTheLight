@@ -61,6 +61,7 @@ public class EnemyManager : MonoBehaviour
     public Vector3 RemoveEnemies(List<Room> rooms)
     {
         Vector3 pos = Vector3.positiveInfinity;
+
         foreach(Room room in rooms)
         {
             for(int i = 0; i < allEnemies[room].Count; i++)
@@ -77,6 +78,7 @@ public class EnemyManager : MonoBehaviour
                 spawner.ClearEnemyList();
             }
         }
+
         return pos;
     }
 
