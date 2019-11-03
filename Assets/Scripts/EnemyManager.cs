@@ -82,17 +82,22 @@ public class EnemyManager : MonoBehaviour
 
     public void SwordCollisions(Player player, Room room)
     {
-        foreach(Enemy enemy in allEnemies[room])
+        if (player.attacking)
         {
-            CircleCollider2D[] check = new CircleCollider2D[1];
-            check[0] = player.GetComponentInChildren<CircleCollider2D>();
-            if(enemy.IsCollidingWith(check))
+            foreach (Enemy enemy in allEnemies[room])
             {
-                enemy.TakeDamage(player.Damage);
-                enemy.TakeKnockback(player);
+                CircleCollider2D[] attack = new CircleCollider2D[1];
+                attack[0] = player.GetComponentInChildren<CircleCollider2D>();
+
+                if (enemy.IsCollidingWith(attack))
+                {
+                    enemy.TakeDamage(player.Damage);
+                    //enemy.TakeKnockback(player);
+                }
             }
         }
     }
+
 
     public void HandleCollisions(Player player, int damage)
     {
