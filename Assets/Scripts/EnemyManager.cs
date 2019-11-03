@@ -76,7 +76,7 @@ public class EnemyManager : MonoBehaviour
             if(enemy.IsCollidingWith(player.GetComponents<CircleCollider2D>()))
             {
                 Debug.Log("69 lol");
-                HandleCollisions(player, enemy.Damage);
+                HandleCollisions(player, enemy);
             }
         }
     }
@@ -100,9 +100,10 @@ public class EnemyManager : MonoBehaviour
     }
 
 
-    public void HandleCollisions(Player player, int damage)
+    public void HandleCollisions(Player player, Enemy enemy)
     {
         Debug.Log("taking damage");
-        player.TakeDamage(damage);
+        player.TakeDamage(enemy.Damage);
+        player.TakeKnockback(enemy);
     }
 }

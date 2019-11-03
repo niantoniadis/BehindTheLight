@@ -22,7 +22,7 @@ public class Player : Vehicle
     void Start()
     {
         currentState = PlayerStates.Default;
-        direction = new Vector3(1,0,0);
+        direction = new Vector3(1, 0, 0);
         velocity = Vector3.zero;
         acceleration = Vector3.zero;
         position = transform.position;
