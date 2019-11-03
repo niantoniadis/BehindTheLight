@@ -56,7 +56,7 @@ public class SceneManager : MonoBehaviour
                 enemyManager.UpdateEnemyList(rooms);
                 enemyManager.MoveEnemy(player, rooms);
                 enemyManager.EnemyCollisions(player, currentRoom);
-                enemyManager.RemoveEnemies(rooms);
+                player.Score += 100 * enemyManager.RemoveEnemies(rooms);
                 uIManager.UpdatePlayerData(player);
                 break;
             case GameStates.GameOver:

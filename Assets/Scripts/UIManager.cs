@@ -6,6 +6,7 @@ public class UIManager : MonoBehaviour
 {
     public GameObject healthBar;
     public GameObject staminaBar;
+    public GameObject score;
 
     // Start is called before the first frame update
     void Start()
@@ -23,5 +24,6 @@ public class UIManager : MonoBehaviour
     {
         healthBar.transform.localScale = new Vector3(player.Health / player.MaxHealth, healthBar.transform.localScale.y, 0);
         staminaBar.transform.localScale = new Vector3(player.Stamina / player.MaxStamina, staminaBar.transform.localScale.y, 0);
+        score.GetComponent<TextMesh>().text = "Score: " + player.Score.ToString();
     }
 }

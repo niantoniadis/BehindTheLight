@@ -57,8 +57,9 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public void RemoveEnemies(List<Room> rooms)
+    public int RemoveEnemies(List<Room> rooms)
     {
+        int count = 0;
         foreach(Room room in rooms)
         {
             for(int i = 0; i < allEnemies[room].Count; i++)
@@ -67,6 +68,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     Destroy(allEnemies[room][i].gameObject);
                     allEnemies[room].RemoveAt(i);
+                    count++;
                 }
             }
             foreach(EnemySpawner spawner in room.GetSpawners())
@@ -74,6 +76,7 @@ public class EnemyManager : MonoBehaviour
                 spawner.ClearEnemyList();
             }
         }
+        return count;
     }
 
     public void EnemyCollisions(Player player, Room room)

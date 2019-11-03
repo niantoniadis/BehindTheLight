@@ -39,7 +39,7 @@ public class Enemy : Vehicle
         ACCELERATION_SCALE = 1.5f;
         health = 12;
         maxHealth = 12;
-        damage = 3;
+        damage = 6;
         knockback = 18;
         healthBar.SetActive(false);
     }
