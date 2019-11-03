@@ -25,6 +25,7 @@ public class SceneManager : MonoBehaviour
     void Update()
     {
         List<Room> rooms = sceneMap.GetRooms();
+        Room currentRoom = rooms[0]; // change to sceneMap.CurrentRoom;
         switch (gameState)
         {
             case GameStates.Game:
@@ -39,15 +40,15 @@ public class SceneManager : MonoBehaviour
                         player.AnimateAttack();
                         if (player.attacking)
                         {
-                            enemyManager.SwordCollisions(player, rooms[0]);
+                            enemyManager.SwordCollisions(player, currentRoom);
                         }
                         player.RotateVehicle();
                         break;
                 }
-                // sceneMap.LoadCurrentRoom();
+                enemyManager.SpawnEnemyTick(currentRoom);
                 enemyManager.UpdateEnemyList(rooms);
                 enemyManager.MoveEnemy(player, rooms);
-                enemyManager.EnemyCollisions(player, rooms[0]);
+                enemyManager.EnemyCollisions(player, currentRoom);
                 enemyManager.RemoveEnemies(rooms);
                 uIManager.UpdatePlayerData(player);
                 break;

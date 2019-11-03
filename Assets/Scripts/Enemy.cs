@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum EnemyType
 {
-    BABY, LURKER, BIGGESTBRAINIST
+    BABY, LURKER, COWARD, BIGGESTBRAINIST
 }
 
 public class Enemy : Vehicle
@@ -17,11 +17,13 @@ public class Enemy : Vehicle
         direction = new Vector3(1, 0, 0);
         mass = 1;
         MAX_SPEED = 6f;
-        int type = Random.Range(1, 3);
+        int type = Random.Range(1, 4);
         if(type == 1)
             behavior = EnemyType.BABY;
         else if(type == 2) 
             behavior = EnemyType.LURKER;
+        else if(type == 3)
+            behavior = EnemyType.COWARD;
         else
             behavior = EnemyType.BIGGESTBRAINIST;
 
@@ -66,9 +68,24 @@ public class Enemy : Vehicle
             Seek(player);
             Movement();
         }
-        else
+        if(behavior == EnemyType.COWARD)
+        {
+            if(IsCollidingWith(check))
+            {
+                ACCELERATION_SCALE = 9.0f;
+                Flee(player.light.bounds.center);
+            }
+            else
+            {
+                ACCELERATION_SCALE = 1.2f;
+                Seek(player);
+            }
+            Movement();
+        }
+        else // BIGGESTBRAINIST
         {
             SeekAhead(player);
+            Movement();
         }
 
     }

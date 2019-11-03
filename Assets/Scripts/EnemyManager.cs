@@ -75,7 +75,6 @@ public class EnemyManager : MonoBehaviour
         {
             if(enemy.IsCollidingWith(player.GetComponents<CircleCollider2D>()))
             {
-                Debug.Log("69 lol");
                 HandleCollisions(player, enemy);
             }
         }
@@ -105,5 +104,13 @@ public class EnemyManager : MonoBehaviour
         Debug.Log("taking damage");
         player.TakeDamage(enemy.Damage);
         player.TakeKnockback(enemy);
+    }
+
+    public void SpawnEnemyTick(Room room)
+    {
+        foreach(EnemySpawner spawner in room.GetSpawners())
+        {
+            spawner.SpawnEnemy();
+        }
     }
 }
