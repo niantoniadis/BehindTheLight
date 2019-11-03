@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameStates { GameOver, Game }
+public enum GameStates { GameOver, Game, Paused }
 
 public class SceneManager : MonoBehaviour
 {
@@ -12,12 +12,14 @@ public class SceneManager : MonoBehaviour
     public Map sceneMap;
     public EnemyManager enemyManager;
     public UIManager uIManager;
+    public GameObject pauseMenu;
     public Material lineMat;
     
     // Start is called before the first frame update
     void Start()
     {
         gameState = GameStates.Game;
+        pauseMenu.SetActive(false);
         player = Instantiate(player.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Player>();
     }
 
@@ -29,6 +31,12 @@ public class SceneManager : MonoBehaviour
         switch (gameState)
         {
             case GameStates.Game:
+                if(Input.GetKeyDown(KeyCode.P))
+                {
+                    gameState = GameStates.Paused;
+                    break;
+                }
+
                 switch (player.CurrentState)
                 {
                     case PlayerStates.Default:
@@ -62,7 +70,16 @@ public class SceneManager : MonoBehaviour
             case GameStates.GameOver:
                 Debug.Log("you lost bro");
                 break;
+            case GameStates.Paused:
+                pauseMenu.SetActive(true);
+                if(Input.GetKeyDown(KeyCode.P))
+                {
+                    pauseMenu.SetActive(false);
+                    gameState = GameStates.Game;
+                }
+                break;
         }
-        gameState = player.IsDead() ? GameStates.GameOver : GameStates.Game;
+        if(gameState != GameStates.Paused)
+            gameState = player.IsDead() ? GameStates.GameOver : GameStates.Game;
     }
 }
