@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 3991835381662301964}
   - component: {fileID: 976727250348603887}
   - component: {fileID: -7901512292745580874}
-  - component: {fileID: 3711449169798280320}
-  - component: {fileID: 5709468824319418855}
-  - component: {fileID: 7839489298437806225}
-  - component: {fileID: 7637582688504134984}
+  - component: {fileID: 4833811364507668300}
+  - component: {fileID: 948049534988628067}
+  - component: {fileID: 3110691668659563520}
+  - component: {fileID: 8594057232535776733}
+  - component: {fileID: 8685806738131822746}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -96,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89f179d92d29d274ba519bc47591ebeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!58 &3711449169798280320
+--- !u!58 &4833811364507668300
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,10 +110,31 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0014514923, y: 0.0043546855}
+  m_Offset: {x: 0, y: 0.0035176873}
   serializedVersion: 2
-  m_Radius: 0.25033423
---- !u!58 &5709468824319418855
+  m_Radius: 0.24527568
+--- !u!50 &948049534988628067
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7121677948985410776}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
+--- !u!58 &3110691668659563520
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,10 +147,10 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.3048244, y: -0.17418528}
+  m_Offset: {x: 0, y: 0.36}
   serializedVersion: 2
-  m_Radius: 0.096470356
---- !u!58 &7839489298437806225
+  m_Radius: 0.1078099
+--- !u!58 &8594057232535776733
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,10 +163,10 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.30046964, y: -0.17418528}
+  m_Offset: {x: 0.3, y: -0.18}
   serializedVersion: 2
-  m_Radius: 0.08630943
---- !u!58 &7637582688504134984
+  m_Radius: 0.1078099
+--- !u!58 &8685806738131822746
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,6 +179,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0072575808, y: 0.36288625}
+  m_Offset: {x: -0.3, y: -0.18}
   serializedVersion: 2
-  m_Radius: 0.1066311
+  m_Radius: 0.1078099
