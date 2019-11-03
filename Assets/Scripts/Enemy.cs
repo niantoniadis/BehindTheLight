@@ -10,6 +10,7 @@ public enum EnemyType
 public class Enemy : Vehicle
 {
     protected EnemyType behavior;
+    float damageCounter = 0;
     // Start is called before the first frame update
     void Start()
     {

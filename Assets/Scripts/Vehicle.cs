@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Vehicle : MonoBehaviour
 {
+    protected Circle main;
     protected Vector3 direction;
     protected Vector3 position;
     protected Vector3 velocity;
@@ -27,6 +28,8 @@ public abstract class Vehicle : MonoBehaviour
         velocity = Vector3.zero;
         acceleration = Vector3.zero;
         position = transform.position;
+
+        main = GetComponentInChildren<Circle>();
 
         mass = 1;
     }
@@ -65,6 +68,14 @@ public abstract class Vehicle : MonoBehaviour
         get
         {
             return velocity;
+        }
+    }
+
+    public Circle Main
+    {
+        get
+        {
+            return main;
         }
     }
 
@@ -131,7 +142,7 @@ public abstract class Vehicle : MonoBehaviour
         {
             foreach (CircleCollider2D checkCollider in check)
             {
-                if (collider.radius / 3 + checkCollider.radius / 3 > Mathf.Abs(Vector3.Distance(collider.bounds.center, checkCollider.bounds.center)))
+                if (collider.IsTouching(checkCollider))//collider.radius / 3.2f + checkCollider.radius / 3.2f > Mathf.Abs(Vector3.Distance(collider.bounds.center, checkCollider.bounds.center)))
                 {
                     return true;
                 }
