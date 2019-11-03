@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
+    public Room room;
     public List<Room> rooms = new List<Room>();
     public Room currentRoom;
     public GameObject testTile;
@@ -12,11 +13,11 @@ public class Map : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rooms.Add(new Room(0, 0));
-        rooms.Add(new Room(0, 1));
-        rooms.Add(new Room(1, 0));
-        rooms.Add(new Room(-1, 0));
-        rooms.Add(new Room(0, -1));
+        CreateRoom(0, 0);
+        CreateRoom(0, 1);
+        CreateRoom(0, -1);
+        CreateRoom(1, 0);
+        CreateRoom(-1, 0);
         DrawCurrentRoom();
     }
 
@@ -30,22 +31,32 @@ public class Map : MonoBehaviour
         
     }
 
+    public void CreateRoom(int x, int y)
+    {
+        Room r = Instantiate(room.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Room>();
+        r.InstantiateRoom(x, y);
+        rooms.Add(r);
+    }
+
+    public List<Room> GetRooms()
+    {
+        return rooms;
+    }
+
     // Returns a link to the room at the requested coordinates. If the room doesn't yet exist, it is created.
-    public Room LoadRoom(int xCoord, int yCoord)
+    public void LoadRoom(int xCoord, int yCoord)
     {
         // Check if the requested room's coords have been loaded before. If so, return link to that room.
         foreach (Room room in rooms)
         {
             if (room.MatchRoom(xCoord, yCoord))
             {
-                return room;
+                
             }
         }
 
         // Generate a new room
-        Room newRoom = new Room(xCoord, yCoord);
-        rooms.Add(newRoom);
-        return newRoom;
+        CreateRoom(xCoord, yCoord);
     }
 
     public void DrawCurrentRoom()

@@ -12,7 +12,7 @@ public class Room : MonoBehaviour
     public int xCoord;
     public int yCoord;
 
-    public Room(int x, int y)
+    public void InstantiateRoom(int x, int y)
     {
         xCoord = x;
         yCoord = y;
