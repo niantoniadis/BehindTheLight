@@ -199,6 +199,54 @@ Transform:
   m_Father: {fileID: 362886126}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &30544833
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 30544835}
+  - component: {fileID: 30544834}
+  m_Layer: 0
+  m_Name: SceneMap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &30544834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30544833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8276101dd86b5864cab94be7bbbebb9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room: {fileID: 5491154941593084133, guid: 78296abe7b6b2f4489ae078bf3de47c4, type: 3}
+  rooms: []
+  currentRoom: {fileID: 0}
+  testTile: {fileID: 0}
+  mainCamera: {fileID: 0}
+--- !u!4 &30544835
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30544833}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.22878173, y: -1.7268326, z: -22.85277}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &362886125
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,24 +278,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &501351142 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6034523301953240163, guid: 26bf7ad894b3f524d8659179c933a54d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1370281442}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &501351143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 501351142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a2c03d80b2d78b42a12d40b1a27a0d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,12 +405,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 6393971008526896694, guid: 0ade695525eb39f4e9c8d29eff8aa344, type: 3}
-  enemy: {fileID: 1285477210}
-  sceneMap: {fileID: 0}
+  sceneMap: {fileID: 30544834}
   enemyManager: {fileID: 1584613903}
   uIManager: {fileID: 708608260}
-  room: {fileID: 5491154941593084133, guid: 78296abe7b6b2f4489ae078bf3de47c4, type: 3}
-  rooms: []
   lineMat: {fileID: 2100000, guid: 98ab616dbf7e7cb4389db8dd58d5ddda, type: 2}
 --- !u!1 &708608258
 GameObject:
@@ -427,18 +454,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 362886125}
   staminaBar: {fileID: 1869274491}
---- !u!114 &1285477210 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: -7901512292745580874, guid: 85d54a26bde36294d87b5c564d7b63ea,
-    type: 3}
-  m_PrefabInstance: {fileID: 2000141597}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89f179d92d29d274ba519bc47591ebeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1370281442
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -520,6 +535,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.9890869
+      objectReference: {fileID: 0}
+    - target: {fileID: 1460811579383551312, guid: 26bf7ad894b3f524d8659179c933a54d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26bf7ad894b3f524d8659179c933a54d, type: 3}
