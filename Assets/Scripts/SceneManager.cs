@@ -35,10 +35,10 @@ public class SceneManager : MonoBehaviour
                         player.Move();
                         if(Input.GetMouseButtonDown(0))
                         {
-                            player.attacking = true;   
+                            player.Attacking = true;   
                         }
                         player.AnimateAttack();
-                        if (player.attacking)
+                        if(player.Attacking)
                         {
                             enemyManager.SwordCollisions(player, currentRoom);
                         }

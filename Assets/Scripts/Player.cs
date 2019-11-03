@@ -18,7 +18,7 @@ public class Player : Vehicle
     float stamina;
     float hitBuffer;
     bool invincible;
-    public bool attacking = false;
+    bool attacking = false;
 
     // Start is called before the first frame update
     void Start()
@@ -89,6 +89,18 @@ public class Player : Vehicle
         }
     }
 
+    public bool Attacking
+    {
+        get
+        {
+            return attacking;
+        }
+        set 
+        {
+            attacking = value;
+        }
+    }
+
     public override void Movement()
     {
         velocity += acceleration * Time.deltaTime * ACCELERATION_SCALE;
@@ -155,7 +167,6 @@ public class Player : Vehicle
         if(attacking)
         {
             attackingTimer += Time.deltaTime;
-            // -30 degress from direction
             float swordRotation = Mathf.Atan2(-direction.x, direction.y) * Mathf.Rad2Deg;
             swordRotation += 130f;
             sword.transform.rotation = Quaternion.Euler(0, 0, swordRotation - 80 * attackingTimer/attackTime);

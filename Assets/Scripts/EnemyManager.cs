@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     public Dictionary<Room, List<Enemy>> allEnemies = new Dictionary<Room, List<Enemy>>();
+    float damageTimeCounter = 0f;
     // Start is called before the first frame update
     void Start()
     { 
@@ -84,6 +85,7 @@ public class EnemyManager : MonoBehaviour
                 if(enemy != enemy2 && enemy.IsCollidingWith(enemy2.GetComponents<CircleCollider2D>()))
                 {
                     enemy.ApplyForce(enemy.Position - enemy2.Position);
+                    enemy2.ApplyForce(enemy2.Position - enemy.Position);
                 }
             }
         }
@@ -91,14 +93,14 @@ public class EnemyManager : MonoBehaviour
 
     public void SwordCollisions(Player player, Room room)
     {
-        if (player.attacking)
+        if (player.Attacking)
         {
             foreach (Enemy enemy in allEnemies[room])
             {
                 CircleCollider2D[] attack = new CircleCollider2D[1];
                 attack[0] = player.attack;
 
-                if (enemy.IsCollidingWith(attack))
+                if(enemy.IsCollidingWith(attack))
                 {
                     Debug.Log("donzo");
                     enemy.TakeDamage(player.Damage);
@@ -111,8 +113,13 @@ public class EnemyManager : MonoBehaviour
 
     public void HandleCollisions(Player player, Enemy enemy)
     {
-        Debug.Log("taking damage");
-        player.TakeDamage(enemy.Damage);
-        player.TakeKnockback(enemy);
+        damageTimeCounter += Time.deltaTime;
+        
+        if(damageTimeCounter >= 1)
+        {
+            player.TakeDamage(enemy.Damage);
+            player.TakeKnockback(enemy);
+            damageTimeCounter = 0;
+        }
     }
 }
