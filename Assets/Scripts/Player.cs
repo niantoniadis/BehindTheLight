@@ -153,13 +153,13 @@ public class Player : Vehicle
         {
             attackingTimer += Time.deltaTime;
             // -30 degress from direction
-
-            float swordRotation = sword.transform.rotation.z + 60 * attackTime / attackingTimer;
+            float swordRotation = Mathf.Atan2(-direction.x, direction.y) * Mathf.Rad2Deg;
+            swordRotation += 120f;//sword.transform.rotation.z + 60 * attackingTimer / attackTime;
             sword.transform.rotation = Quaternion.Euler(0, 0, swordRotation);
             if(attackingTimer >= attackTime)
             {
-                swordRotation = Mathf.Atan2(coords.x, coords.y) * Mathf.Rad2Deg + 80;
-                sword.transform.rotation = Quaternion.Euler(0, 0, swordRotation);
+            //    swordRotation = Mathf.Atan2(coords.x, coords.y) * Mathf.Rad2Deg + 80;
+            //    sword.transform.rotation = Quaternion.Euler(0, 0, swordRotation);
                 attackingTimer = 0;
                 attacking = false;
             }
