@@ -8,7 +8,6 @@ public class SceneManager : MonoBehaviour
 {
     GameStates gameState = GameStates.Game;
     public Player player;
-    public Enemy enemy;
 
     public Map sceneMap;
     public EnemyManager enemyManager;
@@ -38,11 +37,11 @@ public class SceneManager : MonoBehaviour
                         {
                             player.attacking = true;   
                         }
-                        if(player.attacking)
+                        player.AnimateAttack();
+                        if (player.attacking)
                         {
                             enemyManager.SwordCollisions(player, rooms[0]);
                         }
-                        player.AnimateAttack();
                         player.RotateVehicle();
                         break;
                 }
@@ -58,14 +57,5 @@ public class SceneManager : MonoBehaviour
                 break;
         }
         gameState = player.IsDead() ? GameStates.GameOver : GameStates.Game;
-    }
-
-    private void OnRenderObject()
-    {
-        lineMat.SetPass(0);
-        GL.Begin(GL.LINES);
-        GL.Vertex(player.Position);
-        GL.Vertex(player.Position + player.Direction);
-        GL.End();
     }
 }
