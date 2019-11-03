@@ -42,7 +42,7 @@ public class Enemy : Vehicle
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     public void Move(Player player)

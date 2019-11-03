@@ -77,6 +77,13 @@ public class EnemyManager : MonoBehaviour
             {
                 HandleCollisions(player, enemy);
             }
+            foreach(Enemy enemy2 in allEnemies[room])
+            {
+                if(enemy != enemy2 && enemy.IsCollidingWith(enemy2.GetComponents<CircleCollider2D>()))
+                {
+                    enemy.ApplyForce(enemy.Position - enemy2.Position);
+                }
+            }
         }
     }
 
