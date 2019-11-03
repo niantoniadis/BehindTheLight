@@ -154,7 +154,7 @@ public class Player : Vehicle
             attackingTimer += Time.deltaTime;
             // -30 degress from direction
 
-            float swordRotation = sword.transform.rotation.z + 60 * attackTime / attackingTimer;
+            float swordRotation = sword.transform.rotation.z + 60 * attackingTimer / attackTime;
             sword.transform.rotation = Quaternion.Euler(0, 0, swordRotation);
             if(attackingTimer >= attackTime)
             {
