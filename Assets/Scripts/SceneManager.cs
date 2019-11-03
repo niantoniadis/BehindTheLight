@@ -51,6 +51,7 @@ public class SceneManager : MonoBehaviour
                         {
                             enemyManager.SwordCollisions(player, currentRoom);
                         }
+                        currentRoom.Walls(player);
                         player.RotateVehicle();
                         break;
                 }

@@ -8,6 +8,8 @@ public class Room : MonoBehaviour
     private Room leftRoom;
     private Room rightRoom;
     private Room bottomRoom;
+    float xBound = 8.886f;
+    float yBound = 5f;
 
     public int xCoord;
     public int yCoord;
@@ -94,4 +96,11 @@ public class Room : MonoBehaviour
         }
     }
 
+    public void Walls(Vehicle vehicle)
+    {
+        if(Mathf.Abs(vehicle.Position.x) >= xBound || Mathf.Abs(vehicle.Position.y) >= yBound)
+        {
+            vehicle.ApplyForce(Vector3.zero - vehicle.Position);
+        }
+    }
 }
