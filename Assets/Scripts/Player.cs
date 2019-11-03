@@ -104,10 +104,12 @@ public class Player : Vehicle
     public override void Movement()
     {
         velocity += acceleration * Time.deltaTime * ACCELERATION_SCALE;
+
         if (acceleration.magnitude == 0)
         {
             velocity *= 0.7f;
         }
+
         velocity = Vector3.ClampMagnitude(velocity, MAX_SPEED);
         position += velocity * Time.deltaTime;
 

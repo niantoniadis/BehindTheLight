@@ -44,6 +44,15 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    public void ClearEnemyList()
+    {
+        for(int i = 0; i < enemies.Count; i++)
+        {
+            if(enemies[i] == null)
+                enemies.RemoveAt(i);
+        }
+    }
+
     public List<Enemy> GetEnemies()
     {
         return enemies;

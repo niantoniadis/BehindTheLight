@@ -69,6 +69,10 @@ public class EnemyManager : MonoBehaviour
                     allEnemies[room].RemoveAt(i);
                 }
             }
+            foreach(EnemySpawner spawner in room.GetSpawners())
+            {
+                spawner.ClearEnemyList();
+            }
         }
     }
 
@@ -76,7 +80,8 @@ public class EnemyManager : MonoBehaviour
     {
         foreach(Enemy enemy in allEnemies[room])
         {
-            if(enemy.IsCollidingWith(player.GetComponents<CircleCollider2D>()))
+            enemy.UpdateHealth();
+            if (enemy.IsCollidingWith(player.GetComponents<CircleCollider2D>()))
             {
                 HandleCollisions(player, enemy);
             }
@@ -100,12 +105,13 @@ public class EnemyManager : MonoBehaviour
                 CircleCollider2D[] attack = new CircleCollider2D[1];
                 attack[0] = player.attack;
 
-                if(enemy.IsCollidingWith(attack))
+                if(enemy.IsCollidingWith(attack) && enemy.Attacked >= enemy.HitBuffer)
                 {
-                    Debug.Log("donzo");
                     enemy.TakeDamage(player.Damage);
                     enemy.TakeKnockback(player);
+                    enemy.Attacked = 0f;
                 }
+                enemy.Attacked += Time.deltaTime;
             }
         }
     }

@@ -7,9 +7,14 @@ public enum EnemyType
     BABY, LURKER, COWARD, BIGGESTBRAINIST
 }
 
+
+
 public class Enemy : Vehicle
 {
+    public GameObject healthBar;
     protected EnemyType behavior;
+    float attacked;
+    float hitBuffer = 0.1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,14 +39,34 @@ public class Enemy : Vehicle
         ACCELERATION_SCALE = 1.5f;
         health = 12;
         maxHealth = 12;
-        damage = 1;
+        damage = 3;
         knockback = 18;
+        healthBar.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    public float Attacked
+    {
+        get
+        {
+            return attacked;
+        }
+        set
+        {
+            attacked = value;
+        }
+    }
+
+    public float HitBuffer
+    {
+        get
+        {
+            return hitBuffer;
+        }
     }
 
     public void Move(Player player)
@@ -88,5 +113,14 @@ public class Enemy : Vehicle
             Movement();
         }
 
+    }
+
+    public void UpdateHealth()
+    {
+        healthBar.SetActive(health < maxHealth);
+        if (health < maxHealth)
+        {
+            healthBar.transform.localScale = new Vector3((float)health / (float)maxHealth, healthBar.transform.localScale.y, 0);
+        }
     }
 }
