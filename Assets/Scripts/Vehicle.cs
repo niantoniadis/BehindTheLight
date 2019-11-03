@@ -103,9 +103,9 @@ public abstract class Vehicle : MonoBehaviour
         velocity = vel;
     }
 
-    public void Flee(Vehicle target)
+    public void Flee(Vector3 pos)
     {
-        desiredVelocity = position - target.position;
+        desiredVelocity = position - pos;
         desiredVelocity = Vector3.ClampMagnitude(desiredVelocity, MAX_SPEED);
         acceleration += (desiredVelocity - velocity) / mass;
     }
