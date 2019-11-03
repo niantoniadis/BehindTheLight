@@ -16,7 +16,7 @@ public class Enemy : Vehicle
     {
         direction = new Vector3(1, 0, 0);
         mass = 1;
-        MAX_SPEED = 6f;
+        MAX_SPEED = 4f;
         int type = Random.Range(1, 4);
         if(type == 1)
             behavior = EnemyType.BABY;
@@ -53,6 +53,7 @@ public class Enemy : Vehicle
         {
             if(!IsCollidingWith(check))
             {
+                ACCELERATION_SCALE = 1.5f;
                 Seek(player);
                 Movement();
             }
@@ -61,10 +62,10 @@ public class Enemy : Vehicle
         {
             if(!IsCollidingWith(check)) 
             {
-                ACCELERATION_SCALE = 4.0f;
+                ACCELERATION_SCALE = 1.5f;
             }
             else
-                ACCELERATION_SCALE = 0.3f;
+                ACCELERATION_SCALE = 0.4f;
             Seek(player);
             Movement();
         }
@@ -72,7 +73,7 @@ public class Enemy : Vehicle
         {
             if(IsCollidingWith(check))
             {
-                ACCELERATION_SCALE = 9.0f;
+                ACCELERATION_SCALE = 1.5f;
                 Flee(player.light.bounds.center);
             }
             else
