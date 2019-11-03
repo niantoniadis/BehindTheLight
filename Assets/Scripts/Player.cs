@@ -16,6 +16,8 @@ public class Player : Vehicle
     float maxStamina;
     float staminaResetBuffer;
     float stamina;
+    float hitBuffer;
+    bool invincible;
     public bool attacking = false;
 
     // Start is called before the first frame update
@@ -37,7 +39,8 @@ public class Player : Vehicle
         stamina = maxStamina;
         staminaResetBuffer = 1.5f;
         attackTime = 0.1f;
-        knockback = 8;
+        knockback = 24;
+        damage = 3;
     }
 
     // Update is called once per frame
@@ -154,12 +157,10 @@ public class Player : Vehicle
             attackingTimer += Time.deltaTime;
             // -30 degress from direction
             float swordRotation = Mathf.Atan2(-direction.x, direction.y) * Mathf.Rad2Deg;
-            swordRotation += 120f;//sword.transform.rotation.z + 60 * attackingTimer / attackTime;
-            sword.transform.rotation = Quaternion.Euler(0, 0, swordRotation - 60 * attackingTimer/attackTime);
+            swordRotation += 130f;
+            sword.transform.rotation = Quaternion.Euler(0, 0, swordRotation - 80 * attackingTimer/attackTime);
             if(attackingTimer >= attackTime)
             {
-                swordRotation = Mathf.Atan2(coords.x, coords.y) * Mathf.Rad2Deg + 80;
-                sword.transform.rotation = Quaternion.Euler(0, 0, swordRotation);
                 attackingTimer = 0;
                 attacking = false;
             }

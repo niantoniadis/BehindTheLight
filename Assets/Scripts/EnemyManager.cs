@@ -24,6 +24,7 @@ public class EnemyManager : MonoBehaviour
             List<EnemySpawner> spawners = room.GetSpawners();
             List<Enemy> enemies;
             List<Enemy> roomEnemies;
+
             if(allEnemies.ContainsKey(room))
                 roomEnemies = allEnemies[room];
             else
@@ -59,11 +60,12 @@ public class EnemyManager : MonoBehaviour
     {
         foreach(Room room in rooms)
         {
-            foreach(Enemy enemy in allEnemies[room])
+            for(int i = 0; i < allEnemies[room].Count; i++)
             {
-                if(enemy.IsDead())
+                if(allEnemies[room][i].IsDead())
                 {
-                    //Destroy(enemy);
+                    Destroy(allEnemies[room][i].gameObject);
+                    allEnemies[room].RemoveAt(i);
                 }
             }
         }
@@ -94,12 +96,13 @@ public class EnemyManager : MonoBehaviour
             foreach (Enemy enemy in allEnemies[room])
             {
                 CircleCollider2D[] attack = new CircleCollider2D[1];
-                attack[0] = player.GetComponentInChildren<CircleCollider2D>();
+                attack[0] = player.attack;
 
                 if (enemy.IsCollidingWith(attack))
                 {
+                    Debug.Log("donzo");
                     enemy.TakeDamage(player.Damage);
-                    //enemy.TakeKnockback(player);
+                    enemy.TakeKnockback(player);
                 }
             }
         }
