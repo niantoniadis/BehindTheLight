@@ -34,6 +34,7 @@ public class Enemy : Vehicle
         health = 10;
         maxHealth = 12;
         damage = 3;
+        knockback = 18;
     }
 
     // Update is called once per frame
@@ -51,22 +52,24 @@ public class Enemy : Vehicle
             if(!IsCollidingWith(check))
             {
                 Seek(player);
+                Movement();
             }
         }
         if(behavior == EnemyType.LURKER)
         {
             if(!IsCollidingWith(check)) 
             {
-                ACCELERATION_SCALE = 3.0f;
+                ACCELERATION_SCALE = 4.0f;
             }
             else
-                ACCELERATION_SCALE = 0.5f;
+                ACCELERATION_SCALE = 0.3f;
             Seek(player);
+            Movement();
         }
         else
         {
             SeekAhead(player);
         }
-        Movement();
+
     }
 }
