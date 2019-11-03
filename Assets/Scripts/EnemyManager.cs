@@ -78,7 +78,6 @@ public class EnemyManager : MonoBehaviour
                 spawner.ClearEnemyList();
             }
         }
-
         return pos;
     }
 

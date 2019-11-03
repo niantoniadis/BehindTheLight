@@ -66,7 +66,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -912018771
-  m_SortingLayer: 2
+  m_SortingLayer: -4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f8aae73835298364eb195f3a8378dd57, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -107,7 +107,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4125352474651660466}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.7993518, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.197, y: 0.197, z: 1}
   m_Children:
   - {fileID: 6003450801614718659}
@@ -152,7 +152,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -912018771
-  m_SortingLayer: 2
+  m_SortingLayer: -4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 25fa765d7be343d45892bfe547c6a32f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 4701957266473042498}
-  light: {fileID: 4218173721002499038}
+  lightCollider: {fileID: 4218173721002499038}
   attack: {fileID: 2767822835848558946}
 --- !u!58 &8037866589378736463
 CircleCollider2D:
@@ -240,7 +240,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4701957266473042498}
-  m_LocalRotation: {x: -0, y: -0, z: -0.061487023, w: 0.9981079}
+  m_LocalRotation: {x: -0, y: -0, z: 0.64278764, w: 0.7660445}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -272,7 +272,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5723367690184390804}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.971327, y: 0, z: -13.850001}
+  m_LocalPosition: {x: 23.49, y: 0, z: -13.850001}
   m_LocalScale: {x: 5.0761423, y: 5.0761423, z: 1}
   m_Children:
   - {fileID: 6882827268187869811}
@@ -547,7 +547,7 @@ Light:
   serializedVersion: 9
   m_Type: 0
   m_Color: {r: 0.95172125, g: 0.9528302, b: 0.6427109, a: 0.75686276}
-  m_Intensity: 3
+  m_Intensity: 1.5
   m_Range: 31.120003
   m_SpotAngle: 18.815386
   m_InnerSpotAngle: 2.1

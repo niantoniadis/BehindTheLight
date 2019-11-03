@@ -65,10 +65,15 @@ public class SceneManager : MonoBehaviour
                 enemyManager.UpdateEnemyList(rooms);
                 enemyManager.MoveEnemy(player, rooms);
                 enemyManager.EnemyCollisions(player, currentRoom);
-                powerUpManager.ChancePowerSpawn(enemyManager.RemoveEnemies(rooms));
-                powerUpManager.HandleCollision(player);
                 Vector3 pos = enemyManager.RemoveEnemies(rooms);
-                player.Score += 100 * (pos != Vector3.positiveInfinity ? 1 : 0) + (Time.deltaTime * 10);
+                powerUpManager.ChancePowerSpawn(pos);
+                powerUpManager.HandleCollision(player);
+                
+                if (!pos.Equals(Vector3.positiveInfinity))
+                {
+                    player.Score += 100;
+                }
+                player.Score += (Time.deltaTime * 5);
                 uIManager.UpdatePlayerData(player);
                 break;
             case GameStates.GameOver:
