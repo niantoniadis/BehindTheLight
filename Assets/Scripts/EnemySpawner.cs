@@ -9,6 +9,7 @@ public class EnemySpawner : MonoBehaviour
     bool active = false;
     float enemyFrequency = 6f;
     int maxEnemies = 1;
+    float counter = 0;
 
     public bool Active
     {
