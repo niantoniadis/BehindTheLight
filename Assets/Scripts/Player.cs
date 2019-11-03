@@ -19,7 +19,7 @@ public class Player : Vehicle
     float hitBuffer;
     bool invincible;
     bool attacking = false;
-    int score = 0;
+    float score = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -101,7 +101,7 @@ public class Player : Vehicle
             attacking = value;
         }
     }
-    public int Score
+    public float Score
     {
         get
         {

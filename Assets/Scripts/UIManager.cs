@@ -24,6 +24,6 @@ public class UIManager : MonoBehaviour
     {
         healthBar.transform.localScale = new Vector3(player.Health / player.MaxHealth, healthBar.transform.localScale.y, 0);
         staminaBar.transform.localScale = new Vector3(player.Stamina / player.MaxStamina, staminaBar.transform.localScale.y, 0);
-        score.GetComponent<TextMesh>().text = "Score: " + player.Score.ToString();
+        score.GetComponent<TextMesh>().text = "Score: " + ((int)player.Score).ToString();
     }
 }
