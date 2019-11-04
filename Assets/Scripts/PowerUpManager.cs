@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PowerUpType { Health, BackFlash, LargeFlash, DoubleDamage, TripleFlash }
+public enum PowerUpType { Health, BackFlash, LargeFlash, DoubleDamage, TripleFlash, Stamina }
 
 public class PowerUpManager : MonoBehaviour
 {
     public PowerUp health;
-    public PowerUp behindFlash;
+    public PowerUp backFlash;
     public PowerUp largeFlash;
     public PowerUp tripleFlash;
     public PowerUp doubleDamage;
+    public PowerUp stamina;
     List<PowerUp> powerUps;
 
     // Start is called before the first frame update
@@ -42,11 +43,11 @@ public class PowerUpManager : MonoBehaviour
             }
             else if (rng > 0.4)
             {
-                powerUps.Add(Instantiate(largeFlash.gameObject, pos, Quaternion.identity).GetComponent<PowerUp>());
+                powerUps.Add(Instantiate(backFlash.gameObject, pos, Quaternion.identity).GetComponent<PowerUp>());
             }
             else if (rng > 0.2)
             {
-                powerUps.Add(Instantiate(largeFlash.gameObject, pos, Quaternion.identity).GetComponent<PowerUp>());
+                powerUps.Add(Instantiate(stamina.gameObject, pos, Quaternion.identity).GetComponent<PowerUp>());
             }
             else
             {
@@ -66,14 +67,23 @@ public class PowerUpManager : MonoBehaviour
                     case PowerUpType.Health:
                         player.Heal(5);
                         break;
+
                     case PowerUpType.LargeFlash:
                         player.EnlargeFlashlight(powerUps[i].Cooldown);
                         break;
+
                     case PowerUpType.DoubleDamage:
                         break;
+
                     case PowerUpType.TripleFlash:
                         break;
+
                     case PowerUpType.BackFlash:
+                        player.SpawnBackFlashlight(powerUps[i].Cooldown);
+                        break;
+
+                    case PowerUpType.Stamina:
+                        player.IncStamina(0.5f);
                         break;
                 }
 

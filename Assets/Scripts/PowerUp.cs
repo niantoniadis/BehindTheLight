@@ -7,12 +7,12 @@ public class PowerUp : MonoBehaviour
     float angleOfRotation;
     float lifeSpan;
     float cooldown;
-    CircleCollider2D collider;
+    CircleCollider2D main;
     PowerUpType type;
     // Start is called before the first frame update
     void Start()
     {
-        collider = GetComponent<CircleCollider2D>();
+        main = GetComponent<CircleCollider2D>();
         switch (gameObject.tag)
         {
             case "HealthPower":
@@ -38,6 +38,10 @@ public class PowerUp : MonoBehaviour
                 break;
 
             case "DoubleDamagePower":
+                type = PowerUpType.DoubleDamage;
+                break;
+
+            case "StaminaPower":
                 type = PowerUpType.DoubleDamage;
                 break;
         }

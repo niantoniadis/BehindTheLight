@@ -857,11 +857,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 4468589658436508611, guid: 61f951d75713c8b44be65338944f7340, type: 3}
-  behindFlash: {fileID: 0}
+  backFlash: {fileID: 4468589658436508611, guid: 3d356b169a302484db5a446ddab5295d,
+    type: 3}
   largeFlash: {fileID: 4468589658436508611, guid: b0be7a0f2c474a74b84994111f30fb4d,
     type: 3}
   tripleFlash: {fileID: 0}
   doubleDamage: {fileID: 0}
+  stamina: {fileID: 4468589658436508611, guid: dc5dbe145af3af24f98bccfe8af3ca61, type: 3}
 --- !u!4 &1123039421
 Transform:
   m_ObjectHideFlags: 0

@@ -23,6 +23,8 @@ public class Player : Vehicle
     float score = 0;
     bool flashEnlarged;
     float flashEnlargedTimer;
+    GameObject backLight;
+    float backFlashTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +49,7 @@ public class Player : Vehicle
         damage = 3;
         flashEnlarged = false;
         flashEnlargedTimer = 0f;
+        backFlashTimer = 0f;
     }
 
     // Update is called once per frame
@@ -59,6 +62,14 @@ public class Player : Vehicle
         if(flashEnlargedTimer <= 0 && flashEnlarged)
         {
             ResetFlashlight();
+        }
+        if(backFlashTimer > 0)
+        {
+            backFlashTimer -= Time.deltaTime;
+        }
+        if(backFlashTimer <= 0)
+        {
+            RemoveBackFlashlight();
         }
     }
 
@@ -206,7 +217,6 @@ public class Player : Vehicle
         {
             stamina += Time.deltaTime;
         }
-
     }
 
     public void RotateVehicle()
@@ -240,5 +250,30 @@ public class Player : Vehicle
         frontLight.spotAngle = 26.21703f;
         flashEnlarged = false;
         flashEnlargedTimer = 0;
+    }
+    
+    public void SpawnBackFlashlight(float cooldown)
+    {
+        backFlashTimer = cooldown;
+
+        if (backLight == null && backFlashTimer > 0)
+        {
+            Vector3 pos = frontLight.transform.position;
+            backLight = Instantiate(frontLight.gameObject, new Vector3(-pos.x, pos.y, 0), Quaternion.identity);
+            backLight.transform.parent = frontLight.transform.parent;
+        }
+    }
+
+    public void RemoveBackFlashlight()
+    {
+        if (backLight != null && backFlashTimer <= 0)
+        {
+            Destroy(backLight);
+        }
+    }
+
+    public void IncStamina(float count)
+    {
+        stamina += count;
     }
 }

@@ -358,6 +358,7 @@ MonoBehaviour:
   sword: {fileID: 6924279848677932400}
   lightCollider: {fileID: 5402207935110798878}
   attack: {fileID: 2556390167576482905}
+  frontLight: {fileID: 7725900370395017740}
 --- !u!58 &8037866589378736463
 CircleCollider2D:
   m_ObjectHideFlags: 0

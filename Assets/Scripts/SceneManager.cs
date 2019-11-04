@@ -53,6 +53,7 @@ public class SceneManager : MonoBehaviour
                         }
                         currentRoom.Walls(player);
                         player.RotateVehicle();
+                        player.StaminaUpdate();
                         break;
                 }
                 currentRoom.ActivateSpawners();
