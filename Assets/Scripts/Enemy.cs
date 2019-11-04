@@ -113,6 +113,7 @@ public class Enemy : Vehicle
             Movement();
         }
 
+        RotateVehicle(player);
     }
 
     public void UpdateHealth()
@@ -122,5 +123,12 @@ public class Enemy : Vehicle
         {
             healthBar.transform.localScale = new Vector3((float)health / (float)maxHealth, healthBar.transform.localScale.y, 0);
         }
+    }
+
+    public void RotateVehicle(Player player)
+    {
+        float prevRotation = rotation;
+        rotation = Mathf.Atan2(velocity.normalized.x, -velocity.normalized.y) * Mathf.Rad2Deg;
+        direction = Quaternion.Euler(0, 0, rotation - prevRotation) * direction;
     }
 }
