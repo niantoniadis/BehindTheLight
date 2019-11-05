@@ -15,21 +15,14 @@ public class Enemy : Vehicle
     protected EnemyType behavior;
     float attacked;
     float hitBuffer = 0.1f;
+
     // Start is called before the first frame update
     void Start()
     {
         direction = new Vector3(1, 0, 0);
         mass = 1;
         MAX_SPEED = 4f;
-        int type = Random.Range(1, 4);
-        if(type == 1)
-            behavior = EnemyType.BABY;
-        else if(type == 2) 
-            behavior = EnemyType.LURKER;
-        else if(type == 3)
-            behavior = EnemyType.COWARD;
-        else
-            behavior = EnemyType.BIGGESTBRAINIST;
+        int type = Random.Range(1, 5);
 
         velocity = Vector3.zero;
         acceleration = Vector3.zero;
@@ -41,7 +34,6 @@ public class Enemy : Vehicle
         maxHealth = 12;
         damage = 5;
         knockback = 18;
-        healthBar.SetActive(false);
     }
 
     // Update is called once per frame
@@ -66,6 +58,18 @@ public class Enemy : Vehicle
         get
         {
             return hitBuffer;
+        }
+    }
+
+    public EnemyType Behavior
+    {
+        get
+        {
+            return behavior;
+        }
+        set
+        {
+            behavior = value;
         }
     }
 
@@ -118,10 +122,35 @@ public class Enemy : Vehicle
 
     public void UpdateHealth()
     {
-        healthBar.SetActive(health < maxHealth);
         if (health < maxHealth)
         {
-            healthBar.transform.localScale = new Vector3((float)health / (float)maxHealth, healthBar.transform.localScale.y, 0);
+            if (healthBar == null)
+            {
+                healthBar = Instantiate(healthBar, Vector3.zero, Quaternion.identity);
+            }
+            switch (behavior)
+            {
+                case EnemyType.BABY:
+                    healthBar.transform.position = new Vector3(position.x - 0.43f, position.y + 0.765f);
+                    healthBar.transform.localScale = new Vector3((float)health / (float)maxHealth, healthBar.transform.localScale.y, 0);
+                    break;
+
+                case EnemyType.BIGGESTBRAINIST:
+                    healthBar.transform.position = new Vector3(position.x - 0.209f, position.y + 0.503f);
+                    healthBar.transform.localScale = new Vector3((float)health / (float)maxHealth, healthBar.transform.localScale.y, 0);
+                    break;
+
+                case EnemyType.COWARD:
+                    healthBar.transform.position = new Vector3(position.x - 0.387f, position.y + 0.476f);
+                    healthBar.transform.localScale = new Vector3((float)health / (float)maxHealth, healthBar.transform.localScale.y, 0);
+                    break;
+
+                case EnemyType.LURKER:
+                    healthBar.transform.position = new Vector3(position.x - 0.427f, position.y + 0.359f);
+                    healthBar.transform.localScale = new Vector3((float)health / (float)maxHealth, healthBar.transform.localScale.y, 0);
+                    break;
+            }
+            
         }
     }
 
