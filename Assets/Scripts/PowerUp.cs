@@ -5,24 +5,32 @@ using UnityEngine;
 public class PowerUp : MonoBehaviour
 {
     float angleOfRotation;
-    CircleCollider2D collider;
+    float lifeSpan;
+    float cooldown;
+    CircleCollider2D main;
     PowerUpType type;
     // Start is called before the first frame update
     void Start()
     {
-        collider = GetComponent<CircleCollider2D>();
+        main = GetComponent<CircleCollider2D>();
         switch (gameObject.tag)
         {
             case "HealthPower":
                 type = PowerUpType.Health;
+                lifeSpan = 10f;
+                cooldown = 0;
                 break;
 
             case "LargeFlashPower":
                 type = PowerUpType.LargeFlash;
+                lifeSpan = 6f;
+                cooldown = 4f;
                 break;
 
             case "BackFlashPower":
                 type = PowerUpType.BackFlash;
+                lifeSpan = 3f;
+                cooldown = 6f;
                 break;
 
             case "TripleFlashPower":
@@ -32,12 +40,17 @@ public class PowerUp : MonoBehaviour
             case "DoubleDamagePower":
                 type = PowerUpType.DoubleDamage;
                 break;
+
+            case "StaminaPower":
+                type = PowerUpType.DoubleDamage;
+                break;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        lifeSpan -= Time.deltaTime;
         angleOfRotation += 2f;
         transform.rotation = Quaternion.Euler(0, 0, angleOfRotation);
     }
@@ -49,4 +62,20 @@ public class PowerUp : MonoBehaviour
             return type;
         }
     } 
+
+    public float Cooldown
+    {
+        get
+        {
+            return cooldown;
+        }
+    }
+
+    public float LifeSpan
+    {
+        get
+        {
+            return lifeSpan;
+        }
+    }
 }

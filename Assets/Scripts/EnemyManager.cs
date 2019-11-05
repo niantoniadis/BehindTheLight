@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+    public Vehicle boid;
     public Dictionary<Room, List<Enemy>> allEnemies = new Dictionary<Room, List<Enemy>>();
     float damageTimeCounter = 0f;
 
+    List<Vehicle> boids;
+
     // Start is called before the first frame update
     void Start()
-    { 
+    {
+        boids = new List<Vehicle>();
 
     }
     
@@ -132,5 +136,18 @@ public class EnemyManager : MonoBehaviour
             player.TakeKnockback(enemy);
             damageTimeCounter = 0;
         }
+    }
+
+    public void spawnBoids()
+    {
+        for(int i = 0; i < 6; i++)
+        {
+            boids.Add(Instantiate(boid.gameObject, new Vector3(Random.Range(-7.5f, 7.5f), Random.Range(-4f, 4f), 0), Quaternion.Euler(0, 0, Random.Range(0, 360))).GetComponent<Vehicle>());
+        }
+    }
+
+    public void updateBoids()
+    {
+
     }
 }

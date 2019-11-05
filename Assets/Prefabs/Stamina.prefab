@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6263063161129766494}
   - component: {fileID: 7747497056615802171}
   m_Layer: 9
-  m_Name: HealthSprite
+  m_Name: StaminaSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1039556295759186340}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.26, y: -8.38, z: 0}
+  m_LocalPosition: {x: -4.97, y: -0.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4328504583279003203}
@@ -48,7 +48,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0aa8e1fa708ec8b4bb4c09fb90feb370, type: 2}
+  - {fileID: 2100000, guid: bb48285b331423147be18f56381e2217, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -68,7 +68,7 @@ SpriteRenderer:
   m_SortingLayerID: -1177316851
   m_SortingLayer: -3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ccc79f3ce199456469d59d6652aa054b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e7f5a8a387f8fc741ace4c85cd1fdeba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -91,8 +91,8 @@ GameObject:
   - component: {fileID: 832149754918928086}
   - component: {fileID: 4468589658436508611}
   m_Layer: 9
-  m_Name: Health
-  m_TagString: HealthPower
+  m_Name: Stamina
+  m_TagString: StaminaPower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,9 +126,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.017303944, y: 0}
+  m_Offset: {x: -0.017303973, y: -0.058732927}
   serializedVersion: 2
-  m_Radius: 2.2599144
+  m_Radius: 3.2113895
 --- !u!114 &4468589658436508611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,10 +182,10 @@ Light:
   m_Enabled: 1
   serializedVersion: 9
   m_Type: 0
-  m_Color: {r: 0.7266493, g: 0.9339623, b: 0.5594963, a: 0.8392157}
+  m_Color: {r: 0.5484603, g: 0.69281715, b: 0.8018868, a: 0.9019608}
   m_Intensity: 1
   m_Range: 31.120003
-  m_SpotAngle: 18.221855
+  m_SpotAngle: 24.6
   m_InnerSpotAngle: 2.1
   m_CookieSize: 10
   m_Shadows:
@@ -222,7 +222,7 @@ Light:
     serializedVersion: 2
     m_Bits: 1536
   m_RenderingLayerMask: 1
-  m_Lightmapping: 2
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 0.95164114, y: 2.6815138}
   m_BounceIntensity: 0

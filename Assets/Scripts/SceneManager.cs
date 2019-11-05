@@ -42,7 +42,7 @@ public class SceneManager : MonoBehaviour
                 {
                     case PlayerStates.Default:
                         player.Move();
-                        if(Input.GetMouseButtonDown(0))
+                        if(Input.GetMouseButton(0))
                         {
                             player.Attacking = true;   
                         }
@@ -53,6 +53,7 @@ public class SceneManager : MonoBehaviour
                         }
                         currentRoom.Walls(player);
                         player.RotateVehicle();
+                        player.StaminaUpdate();
                         break;
                 }
                 currentRoom.ActivateSpawners();

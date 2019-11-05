@@ -9,6 +9,7 @@ public class Player : Vehicle
     public GameObject sword;
     public CircleCollider2D lightCollider;
     public CircleCollider2D attack;
+    public Light frontLight;
     float attackingTimer = 0;
     float attackTime;
     PlayerStates currentState;
@@ -20,6 +21,10 @@ public class Player : Vehicle
     bool invincible;
     bool attacking = false;
     float score = 0;
+    bool flashEnlarged;
+    float flashEnlargedTimer;
+    GameObject backLight;
+    float backFlashTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -42,12 +47,30 @@ public class Player : Vehicle
         attackTime = 0.1f;
         knockback = 24;
         damage = 3;
+        flashEnlarged = false;
+        flashEnlargedTimer = 0f;
+        backFlashTimer = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (flashEnlarged)
+        {
+            flashEnlargedTimer -= Time.deltaTime;
+        }
+        if(flashEnlargedTimer <= 0 && flashEnlarged)
+        {
+            ResetFlashlight();
+        }
+        if(backFlashTimer > 0)
+        {
+            backFlashTimer -= Time.deltaTime;
+        }
+        if(backFlashTimer <= 0)
+        {
+            RemoveBackFlashlight();
+        }
     }
 
     public float Stamina
@@ -194,7 +217,6 @@ public class Player : Vehicle
         {
             stamina += Time.deltaTime;
         }
-
     }
 
     public void RotateVehicle()
@@ -214,5 +236,44 @@ public class Player : Vehicle
         float swordRotation;
         swordRotation = Mathf.Atan2(coords.x, coords.y) * Mathf.Rad2Deg + 80;
         sword.transform.rotation = Quaternion.Euler(0, 0, swordRotation);
+    }
+
+    public void EnlargeFlashlight(float cooldown)
+    {
+        frontLight.spotAngle = 46.24f;
+        flashEnlarged = true;
+        flashEnlargedTimer = cooldown;
+    }
+
+    public void ResetFlashlight()
+    {
+        frontLight.spotAngle = 26.21703f;
+        flashEnlarged = false;
+        flashEnlargedTimer = 0;
+    }
+    
+    public void SpawnBackFlashlight(float cooldown)
+    {
+        backFlashTimer = cooldown;
+
+        if (backLight == null && backFlashTimer > 0)
+        {
+            Vector3 pos = frontLight.transform.position;
+            backLight = Instantiate(frontLight.gameObject, new Vector3(-pos.x, pos.y, 0), Quaternion.identity);
+            backLight.transform.parent = frontLight.transform.parent;
+        }
+    }
+
+    public void RemoveBackFlashlight()
+    {
+        if (backLight != null && backFlashTimer <= 0)
+        {
+            Destroy(backLight);
+        }
+    }
+
+    public void IncStamina(float count)
+    {
+        stamina += count;
     }
 }
