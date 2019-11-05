@@ -16,8 +16,7 @@ public abstract class Vehicle : MonoBehaviour
     protected int damage;
     protected int knockback = 1;
 
-    protected float ACCELERATION_SCALE = 1;
-    protected float MAX_SPEED;
+    protected float ACCELERATION_SCALE = 1;    protected float MAX_SPEED;
     protected float FRICTION_COEF;
 
     // Start is called before the first frame update
