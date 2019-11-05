@@ -30,7 +30,7 @@ public class PowerUpManager : MonoBehaviour
     {
         float rng = Random.Range(0f, 1f);
 
-        if(rng >= 0.9 && pos.x < 30000f)
+        if(rng >= 0.5 && pos.x < 30000f)
         {
             rng = Random.Range(0f, 1f);
             if(rng > 0.8)

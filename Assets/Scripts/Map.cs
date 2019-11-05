@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
-    public Room room;
-    public List<Room> rooms = new List<Room>();
-    public Room currentRoom;
-    public GameObject testTile;
-    public GameObject mainCamera;
+    public Room sampleRoom;
+    public Room playerRoom; // the room the player is currently inside
+    public List<Room> allRooms;
+    public Room[] loadedRooms;
+    public GameObject mainCamera; // the main camera, needs to follow the playerRoom
 
-    // Start is called before the first frame update
     void Start()
     {
+        allRooms = new List<Room>();
+        loadedRooms = new Room[5];
+
         CreateRoom(0, 0);
         //CreateRoom(0, 1);
         //CreateRoom(0, -1);
@@ -21,19 +23,30 @@ public class Map : MonoBehaviour
         //DrawCurrentRoom();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // Draw the current room and its neighbors
-        //DrawCurrentRoom();
-
-        // lock main camera to the current room
         
+    }
+
+    void UpdateMap()
+    {
+        //unload old rooms
+        //load new rooms
+    }
+
+    void LoadRooms()
+    {
+
+    }
+
+    void UnloadRooms()
+    {
+
     }
 
     public void CreateRoom(int x, int y)
     {
-        Room r = Instantiate(room.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Room>();
+        Room r = Instantiate(sampleRoom.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Room>();
         r.InstantiateRoom(x, y);
         rooms.Add(r);
     }
