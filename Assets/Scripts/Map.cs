@@ -5,22 +5,18 @@ using UnityEngine;
 public class Map : MonoBehaviour
 {
     public Room sampleRoom;
-    public Room playerRoom; // the room the player is currently inside
+    Room currentRoom; // the room the player is currently inside
     public List<Room> allRooms;
-    public Room[] loadedRooms;
-    public GameObject mainCamera; // the main camera, needs to follow the playerRoom
+    public Dictionary<string, Room> loadedRooms;
+    Camera main;
 
     void Start()
     {
         allRooms = new List<Room>();
-        loadedRooms = new Room[5];
-
-        CreateRoom(0, 0);
-        //CreateRoom(0, 1);
-        //CreateRoom(0, -1);
-        //CreateRoom(1, 0);
-        //CreateRoom(-1, 0);
-        //DrawCurrentRoom();
+        loadedRooms = new Dictionary<string, Room>();
+        main = Camera.main;
+        currentRoom = CreateRoom(0, 0);
+        HandleRooms(currentRoom);
     }
 
     void Update()
@@ -28,37 +24,101 @@ public class Map : MonoBehaviour
 
     }
 
-    public void UpdateMap(Player player)
+    public Room CurrentRoom
     {
-
+        get
+        {
+            return currentRoom;
+        }
     }
 
     // sets the new current room of the map
-    void UpdatePlayerRoom(Room room)
+    public void UpdatePlayerRoom(Player player)
     {
-        playerRoom = room;
+        int x, y;
 
         // figure out direction
-        // set new coords
-
+        if(player.Position.x < currentRoom.GetXMin())
+        {
+            x = currentRoom.xCoord - 1;
+            y = currentRoom.yCoord;
+            currentRoom = loadedRooms["left"];
+        }
+        if (player.Position.x > currentRoom.GetXMax())
+        {
+            x = currentRoom.xCoord + 1;
+            y = currentRoom.yCoord;
+            currentRoom = loadedRooms["right"];
+        }
+        if (player.Position.y < currentRoom.GetYMin())
+        {
+            x = currentRoom.xCoord;
+            y = currentRoom.yCoord - 1;
+            currentRoom = loadedRooms["bottom"];
+        }
+        if (player.Position.y > currentRoom.GetYMax())
+        {
+            x = currentRoom.xCoord;
+            y = currentRoom.yCoord + 1;
+            currentRoom = loadedRooms["top"];
+        }
+        HandleRooms(currentRoom);
         // move camera
-        // load new rooms
-        // unload old room
+        main.transform.position = new Vector3(currentRoom.Center.x, currentRoom.Center.y, main.transform.position.z);
     }
 
-    void LoadRooms()
+    //loads and unloads loaded rooms 
+    void HandleRooms(Room currentRoom)
     {
-
-    }
-
-    void UnloadRooms()
-    {
-
+        foreach(KeyValuePair<string, Room> pair in loadedRooms)
+        {
+            loadedRooms[pair.Key] = null;
+        }
+        foreach(Room r in allRooms)
+        {
+            if(currentRoom.xCoord + 1 == r.xCoord)
+            {
+                loadedRooms["right"] = r;
+            }
+            if(currentRoom.xCoord - 1 == r.xCoord)
+            {
+                loadedRooms["left"] = r;
+            }
+            if(currentRoom.yCoord + 1 == r.yCoord)
+            {
+                loadedRooms["top"] = r;
+            }
+            if (currentRoom.yCoord - 1 == r.yCoord)
+            {
+                loadedRooms["bottom"] = r;
+            }
+        }
+        foreach (KeyValuePair<string, Room> pair in loadedRooms)
+        {
+            if(loadedRooms[pair.Key] == null)
+            {
+                switch(pair.Key)
+                {
+                    case "right":
+                        loadedRooms[pair.Key] = CreateRoom(currentRoom.xCoord + 1, currentRoom.yCoord);
+                        break;
+                    case "left":
+                        loadedRooms[pair.Key] = CreateRoom(currentRoom.xCoord - 1, currentRoom.yCoord);
+                        break;
+                    case "top":
+                        loadedRooms[pair.Key] = CreateRoom(currentRoom.xCoord, currentRoom.yCoord + 1);
+                        break;
+                    case "bottom":
+                        loadedRooms[pair.Key] = CreateRoom(currentRoom.xCoord, currentRoom.yCoord - 1);
+                        break;
+                }
+            }
+        }
     }
 
     public Room CreateRoom(int x, int y)
     {
-        Room newRoom = Instantiate(sampleRoom.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Room>();
+        Room newRoom = Instantiate(sampleRoom.gameObject, new Vector3(x * 2 * 8.886f, y * 10f, 0), Quaternion.identity).GetComponent<Room>();
         newRoom.Load(x, y);
         allRooms.Add(newRoom);
         return newRoom;
@@ -66,33 +126,6 @@ public class Map : MonoBehaviour
 
     public List<Room> GetRooms()
     {
-        return rooms;
+        return allRooms;
     }
-
-    // Returns a link to the room at the requested coordinates. If the room doesn't yet exist, it is created.
-    public void LoadRoom(int xCoord, int yCoord)
-    {
-        // Check if the requested room's coords have been loaded before. If so, return link to that room.
-        foreach (Room room in rooms)
-        {
-            if (room.MatchRoom(xCoord, yCoord))
-            {
-                
-            }
-        }
-
-        // Generate a new room
-        CreateRoom(xCoord, yCoord);
-    }
-
-    public void DrawCurrentRoom()
-    {
-        // load all rooms into the world
-        foreach (Room room in rooms)
-        {
-            Instantiate(testTile, new Vector3(room.xCoord, room.yCoord, 0), Quaternion.identity);
-        }
-        
-    }
-
 }

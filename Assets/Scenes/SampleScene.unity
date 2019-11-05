@@ -228,11 +228,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8276101dd86b5864cab94be7bbbebb9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  room: {fileID: 5491154941593084133, guid: 78296abe7b6b2f4489ae078bf3de47c4, type: 3}
-  rooms: []
-  currentRoom: {fileID: 0}
-  testTile: {fileID: 0}
-  mainCamera: {fileID: 0}
+  sampleRoom: {fileID: 5491154941593084133, guid: 78296abe7b6b2f4489ae078bf3de47c4,
+    type: 3}
+  allRooms: []
 --- !u!4 &30544835
 Transform:
   m_ObjectHideFlags: 0

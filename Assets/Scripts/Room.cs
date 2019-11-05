@@ -11,31 +11,42 @@ public class Room : MonoBehaviour
     float xBound = 8.886f;
     float yBound = 5f;
 
-    public Vector3 center;
+    Vector3 center;
 
     public int xCoord;
     public int yCoord;
+
+    public EnemySpawner spawner;
+    List<EnemySpawner> spawners = new List<EnemySpawner>();
+    public GameObject background;
 
     public void Load(int x, int y)
     {
         xCoord = x;
         yCoord = y;
+
+        center = new Vector3(x * xBound, y * yBound, 0);
+        background = Instantiate(background.gameObject, center, Quaternion.identity);
+        SpawnSpawners();
     }
-        
-    public EnemySpawner spawner;
-    List<EnemySpawner> spawners = new List<EnemySpawner>();
-    public GameObject background;
     // Start is called before the first frame update
     void Start()
     {
-        background = Instantiate(background.gameObject, background.transform.position, Quaternion.identity);
-        SpawnSpawners();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public Vector3 Center
+    {
+        get
+        {
+            return center;
+        }
     }
 
     public bool PlayerInRoom(Player coords)
@@ -110,13 +121,22 @@ public class Room : MonoBehaviour
         }
     }
 
-    public int GetXMax()
+    public float GetXMax()
     {
-        
+        return center.x + 8.886f;
     }
 
-    public int GetXMin()
+    public float GetXMin()
     {
+        return center.x - 8.886f;
+    }
+    public float GetYMax()
+    {
+        return center.y + 5f;
+    }
 
+    public float GetYMin()
+    {
+        return center.y - 5f;
     }
 }

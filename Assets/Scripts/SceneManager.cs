@@ -28,7 +28,7 @@ public class SceneManager : MonoBehaviour
     void Update()
     {
         List<Room> rooms = sceneMap.GetRooms();
-        Room currentRoom = rooms[0]; // change to sceneMap.CurrentRoom;
+        Room currentRoom = sceneMap.CurrentRoom;
         switch (gameState)
         {
             case GameStates.Game:
@@ -51,7 +51,7 @@ public class SceneManager : MonoBehaviour
                         {
                             enemyManager.SwordCollisions(player, currentRoom);
                         }
-                        currentRoom.Walls(player);
+                        //currentRoom.Walls(player);
                         player.RotateVehicle();
                         player.StaminaUpdate();
                         break;
@@ -73,7 +73,7 @@ public class SceneManager : MonoBehaviour
                 powerUpManager.ChancePowerSpawn(pos);
                 powerUpManager.HandleCollision(player);
 
-                sceneMap.UpdateMap(player);
+                sceneMap.UpdatePlayerRoom(player);
 
                 if (!pos.Equals(Vector3.positiveInfinity))
                 {
