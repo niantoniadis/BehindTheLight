@@ -63,14 +63,18 @@ public class SceneManager : MonoBehaviour
                     {
                         r.DeactivateSpawners();
                     }
+
                 }
                 enemyManager.UpdateEnemyList(rooms);
                 enemyManager.MoveEnemy(player, rooms);
                 enemyManager.EnemyCollisions(player, currentRoom);
                 Vector3 pos = enemyManager.RemoveEnemies(rooms);
+
                 powerUpManager.ChancePowerSpawn(pos);
                 powerUpManager.HandleCollision(player);
-                
+
+                sceneMap.UpdateMap(player);
+
                 if (!pos.Equals(Vector3.positiveInfinity))
                 {
                     player.Score += 100;

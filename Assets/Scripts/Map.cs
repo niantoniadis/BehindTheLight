@@ -25,13 +25,25 @@ public class Map : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
-    void UpdateMap()
+    public void UpdateMap(Player player)
     {
-        //unload old rooms
-        //load new rooms
+
+    }
+
+    // sets the new current room of the map
+    void UpdatePlayerRoom(Room room)
+    {
+        playerRoom = room;
+
+        // figure out direction
+        // set new coords
+
+        // move camera
+        // load new rooms
+        // unload old room
     }
 
     void LoadRooms()
@@ -44,11 +56,12 @@ public class Map : MonoBehaviour
 
     }
 
-    public void CreateRoom(int x, int y)
+    public Room CreateRoom(int x, int y)
     {
-        Room r = Instantiate(sampleRoom.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Room>();
-        r.InstantiateRoom(x, y);
-        rooms.Add(r);
+        Room newRoom = Instantiate(sampleRoom.gameObject, Vector3.zero, Quaternion.identity).GetComponent<Room>();
+        newRoom.Load(x, y);
+        allRooms.Add(newRoom);
+        return newRoom;
     }
 
     public List<Room> GetRooms()

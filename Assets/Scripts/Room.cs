@@ -11,15 +11,15 @@ public class Room : MonoBehaviour
     float xBound = 8.886f;
     float yBound = 5f;
 
+    public Vector3 center;
+
     public int xCoord;
     public int yCoord;
 
-    public void InstantiateRoom(int x, int y)
+    public void Load(int x, int y)
     {
         xCoord = x;
         yCoord = y;
-
-        // TODO Generate room internals here
     }
         
     public EnemySpawner spawner;
@@ -38,13 +38,19 @@ public class Room : MonoBehaviour
         
     }
 
+    public bool PlayerInRoom(Player coords)
+    {
+        // check if player is in this room
+        return true;
+    }
+
     public bool MatchRoom(int x, int y)
     {
         return x == xCoord && y == yCoord;
     }
 
     // Sets neighbor n. n = 1 for top, 2 for left, 3 for right, 4 for bottom
-    public void setNeighbor(int n, Room neighbor)
+    public void SetNeighbor(int n, Room neighbor)
     {
         if (n == 1)
         {
@@ -102,5 +108,15 @@ public class Room : MonoBehaviour
         {
             vehicle.ApplyForce(Vector3.zero - vehicle.Position);
         }
+    }
+
+    public int GetXMax()
+    {
+        
+    }
+
+    public int GetXMin()
+    {
+
     }
 }
